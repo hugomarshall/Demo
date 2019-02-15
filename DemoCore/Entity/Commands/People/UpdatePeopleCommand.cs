@@ -13,10 +13,10 @@ namespace DemoCore.Domain.Commands
             Name = name;
             Email = email;
             Skype = skype;
-            Celular = celular;
+            Phone = celular;
             LinkedIn = linkedIn;
-            Cidade = cidade;
-            Estado = estado;
+            City = cidade;
+            State = estado;
             Portfolio = portfolio;
             IsDeveloper = isDeveloper;
             IsDesigner = isDesigner;

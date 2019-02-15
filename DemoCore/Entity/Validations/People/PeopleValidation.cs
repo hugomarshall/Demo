@@ -20,10 +20,10 @@ namespace DemoCore.Domain.Validations
             RuleFor(x => x.Name).NotEmpty().WithMessage("");
             RuleFor(x => x.Email).NotEmpty().WithMessage("");
             RuleFor(x => x.Skype).NotEmpty().WithMessage("");
-            RuleFor(x => x.Celular).NotEmpty().WithMessage("");
+            RuleFor(x => x.Phone).NotEmpty().WithMessage("");
             RuleFor(x => x.LinkedIn).NotEmpty().WithMessage("");
-            RuleFor(x => x.Cidade).NotEmpty().WithMessage("");
-            RuleFor(x => x.Estado).NotEmpty().WithMessage("");
+            RuleFor(x => x.City).NotEmpty().WithMessage("");
+            RuleFor(x => x.State).NotEmpty().WithMessage("");
             RuleFor(x => x.Portfolio).Null();
         }
     }

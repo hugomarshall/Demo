@@ -26,7 +26,7 @@ namespace DemoCore.Infra.Data.Context
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("EventConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         }
     }
 }

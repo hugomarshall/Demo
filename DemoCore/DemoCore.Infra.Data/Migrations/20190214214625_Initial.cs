@@ -14,16 +14,16 @@ namespace DemoCore.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<int>(nullable: false),
-                    HasChanges = table.Column<bool>(nullable: false),
-                    IsNew = table.Column<bool>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateLastUpdate = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BestWorkTime", x => x.Id);
+                    table.PrimaryKey("PK_BestWorkTime", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,16 +32,16 @@ namespace DemoCore.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<int>(nullable: false),
-                    HasChanges = table.Column<bool>(nullable: false),
-                    IsNew = table.Column<bool>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateLastUpdate = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Designer", x => x.Id);
+                    table.PrimaryKey("PK_Designer", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,16 +50,16 @@ namespace DemoCore.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<int>(nullable: false),
-                    HasChanges = table.Column<bool>(nullable: false),
-                    IsNew = table.Column<bool>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateLastUpdate = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Developer", x => x.Id);
+                    table.PrimaryKey("PK_Developer", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,16 +94,16 @@ namespace DemoCore.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<int>(nullable: false),
-                    HasChanges = table.Column<bool>(nullable: false),
-                    IsNew = table.Column<bool>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateLastUpdate = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkAvailability", x => x.Id);
+                    table.PrimaryKey("PK_WorkAvailability", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true);
                 });
 
             migrationBuilder.CreateTable(
@@ -138,9 +138,11 @@ namespace DemoCore.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    EntityState = table.Column<int>(nullable: false),
+                    HasChanges = table.Column<bool>(nullable: false),
+                    IsNew = table.Column<bool>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateLastUpdate = table.Column<DateTime>(nullable: true),
                     PeopleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

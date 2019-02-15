@@ -11,10 +11,10 @@ namespace DemoCore.Domain.Commands
         public string Name { get; protected set; }
         public string Email { get; protected set; }
         public string Skype { get; protected set; }
-        public string Celular { get; protected set; }
+        public string Phone { get; protected set; }
         public string LinkedIn { get; protected set; }
-        public string Cidade { get; protected set; }
-        public string Estado { get; protected set; }
+        public string City { get; protected set; }
+        public string State { get; protected set; }
         public string Portfolio { get; protected set; }
         public bool IsDeveloper { get; protected set; }
         public bool IsDesigner { get; protected set; }

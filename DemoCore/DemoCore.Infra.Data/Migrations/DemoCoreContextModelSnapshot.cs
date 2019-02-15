@@ -25,19 +25,34 @@ namespace DemoCore.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Created")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("DateLastUpdate");
+                    b.Property<DateTime?>("DateLastUpdate")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnName("LastUpdate")
+                        .HasColumnType("datetime");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("DescriptionEN")
+                        .IsRequired()
+                        .HasColumnName("DescriptionEN")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("EntityState");
+                    b.Property<string>("DescriptionPT")
+                        .IsRequired()
+                        .HasColumnName("DescriptionPT")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("HasChanges");
+                    b.Property<string>("EntityState")
+                        .IsRequired()
+                        .HasColumnName("EntityState")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<bool>("IsNew");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", true);
 
                     b.ToTable("BestWorkTime");
                 });
@@ -48,19 +63,34 @@ namespace DemoCore.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Created")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("DateLastUpdate");
+                    b.Property<DateTime?>("DateLastUpdate")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnName("LastUpdate")
+                        .HasColumnType("datetime");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("DescriptionEN")
+                        .IsRequired()
+                        .HasColumnName("DescriptionEN")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("EntityState");
+                    b.Property<string>("DescriptionPT")
+                        .IsRequired()
+                        .HasColumnName("DescriptionPT")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("HasChanges");
+                    b.Property<string>("EntityState")
+                        .IsRequired()
+                        .HasColumnName("EntityState")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<bool>("IsNew");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", true);
 
                     b.ToTable("Designer");
                 });
@@ -71,19 +101,34 @@ namespace DemoCore.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Created")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("DateLastUpdate");
+                    b.Property<DateTime?>("DateLastUpdate")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnName("LastUpdate")
+                        .HasColumnType("datetime");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("DescriptionEN")
+                        .IsRequired()
+                        .HasColumnName("DescriptionEN")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("EntityState");
+                    b.Property<string>("DescriptionPT")
+                        .IsRequired()
+                        .HasColumnName("DescriptionPT")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("HasChanges");
+                    b.Property<string>("EntityState")
+                        .IsRequired()
+                        .HasColumnName("EntityState")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<bool>("IsNew");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", true);
 
                     b.ToTable("Developer");
                 });
@@ -175,21 +220,15 @@ namespace DemoCore.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Created")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime>("DateCreated");
 
-                    b.Property<DateTime?>("DateLastUpdate")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnName("LastUpdate")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime?>("DateLastUpdate");
 
-                    b.Property<string>("EntityState")
-                        .IsRequired()
-                        .HasColumnName("EntityState")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<int>("EntityState");
+
+                    b.Property<bool>("HasChanges");
+
+                    b.Property<bool>("IsNew");
 
                     b.Property<int>("PeopleId");
 
@@ -324,19 +363,34 @@ namespace DemoCore.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Created")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("DateLastUpdate");
+                    b.Property<DateTime?>("DateLastUpdate")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnName("LastUpdate")
+                        .HasColumnType("datetime");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("DescriptionEN")
+                        .IsRequired()
+                        .HasColumnName("DescriptionEN")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("EntityState");
+                    b.Property<string>("DescriptionPT")
+                        .IsRequired()
+                        .HasColumnName("DescriptionPT")
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("HasChanges");
+                    b.Property<string>("EntityState")
+                        .IsRequired()
+                        .HasColumnName("EntityState")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<bool>("IsNew");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("SqlServer:Clustered", true);
 
                     b.ToTable("WorkAvailability");
                 });
@@ -352,7 +406,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDesigner", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.Designer", "Designer")
-                        .WithMany()
+                        .WithMany("Knowledge")
                         .HasForeignKey("DesignerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -365,7 +419,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDeveloper", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.Developer", "Developer")
-                        .WithMany()
+                        .WithMany("Knowledge")
                         .HasForeignKey("DeveloperId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -386,7 +440,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationBestWorkTime", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.BestWorkTime", "BestWorkTime")
-                        .WithMany()
+                        .WithMany("Occupation")
                         .HasForeignKey("BestWorkTimeId")
                         .OnDelete(DeleteBehavior.Cascade);
 

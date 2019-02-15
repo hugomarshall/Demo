@@ -1,4 +1,6 @@
-﻿using DemoCore.Domain.CommandHandlers;
+﻿using DemoCore.Application.Interfaces;
+using DemoCore.Application.Services;
+using DemoCore.Domain.CommandHandlers;
 using DemoCore.Domain.Commands;
 using DemoCore.Domain.Core.Bus;
 using DemoCore.Domain.Core.Events;
@@ -37,6 +39,10 @@ namespace DemoCore.Infra.CrossCutting.IoC
             // ASP.NET Authorization Polices
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
+            // Application
+            services.AddScoped<IPeopleService, PeopleService>();
+            services.AddScoped<IDeveloperService, DeveloperService>();
+
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddScoped<INotificationHandler<PeopleRegisteredEvent>, PeopleEventHandler>();
@@ -50,6 +56,7 @@ namespace DemoCore.Infra.CrossCutting.IoC
 
             // Infra - Data
             services.AddScoped<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IDeveloperRepository, DeveloperRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<DemoCoreContext>();
 

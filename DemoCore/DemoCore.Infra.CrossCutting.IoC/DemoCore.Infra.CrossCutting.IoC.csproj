@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DemoCore.Application\DemoCore.Application.csproj" />
     <ProjectReference Include="..\DemoCore.Domain.Core\DemoCore.Domain.Core.csproj" />
     <ProjectReference Include="..\DemoCore.Infra.CrossCutting.Bus\DemoCore.Infra.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\DemoCore.Infra.CrossCutting.Identity\DemoCore.Infra.CrossCutting.Identity.csproj" />

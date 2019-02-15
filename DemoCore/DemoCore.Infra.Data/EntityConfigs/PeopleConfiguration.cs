@@ -5,13 +5,13 @@ using System;
 
 namespace DemoCore.Infra.Data.EntityConfigs
 {
-    public class PeopleConfiguration : IEntityTypeConfiguration<People>
+    public class PeopleConfiguration : BaseConfiguration<People>
     {
-        public void Configure(EntityTypeBuilder<People> builder)
+        public override void Configure(EntityTypeBuilder<People> builder)
         {
             builder.HasKey(x=>x.Id).ForSqlServerIsClustered();
-            
             builder.Property(x => x.Id).UseSqlServerIdentityColumn().ValueGeneratedOnAdd();
+
             builder.Property(x => x.Name).HasColumnName("Name").HasColumnType("nvarchar(100)").HasMaxLength(100).IsRequired();
             builder.Property(x => x.Email).HasColumnName("Email").HasColumnType("nvarchar(100)").HasMaxLength(100).IsRequired();
             builder.Property(x => x.Skype).HasColumnName("Skype").HasColumnType("nvarchar(100)").HasMaxLength(100).IsRequired();
@@ -23,18 +23,9 @@ namespace DemoCore.Infra.Data.EntityConfigs
             builder.Property(x => x.IsDeveloper).HasColumnName("IsDeveloper").HasColumnType("bit").IsRequired();
             builder.Property(x => x.IsDesigner).HasColumnName("IsDesigner").IsRequired();
             
-
-            builder.Property(x => x.DateCreated).HasColumnName("Created").HasColumnType("datetime").ValueGeneratedOnAdd().IsRequired();
-            builder.Property(x => x.DateLastUpdate).HasColumnName("LastUpdate").HasColumnType("datetime").ValueGeneratedOnUpdate();
-            builder.Property(x => x.EntityState).HasColumnName("EntityState").HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
-            builder.Ignore(x => x.HasChanges);
-            builder.Ignore(x => x.IsNew);
-            builder.Ignore(x => x.IsValid);
-            
-            
             builder.HasOne(x => x.Occupation).WithOne(x=>x.People);
             builder.HasOne(x => x.Knowledge).WithOne(x=>x.People);
-            
+            base.Configure(builder);
         }
     }
 }

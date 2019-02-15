@@ -1,4 +1,5 @@
 ﻿using DemoCore.Domain.Core.Models;
+using System.Collections.Generic;
 
 namespace DemoCore.Domain.Models
 {
@@ -13,8 +14,9 @@ namespace DemoCore.Domain.Models
             Id = id;
         }
         public int Id { get; private set; }
-        public string Description { get; set; }
-
+        public string DescriptionPT { get; set; }
+        public string DescriptionEN { get; set; }
+        public ICollection<OccupationBestWorkTime> Occupation { get; set; }
         public override bool Validate()
         {
             //TODO Implement Validate
