@@ -1,11 +1,9 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Application.ViewModels
 {
-    public class DesignerVM: Profile
+    public class DesignerVM
     {
         [Key]
         public int Id { get; set; }
@@ -20,7 +18,7 @@ namespace DemoCore.Application.ViewModels
         [Display(Name = "Portuguese Description")]
         public string DescriptionPT { get; set; }
         public EntityStateOptions EntityState { get; set; }
-        public ICollection<KnowledgeDesignerVM> Knowledge { get; set; }
+        //public virtual ICollection<KnowledgeDesignerVM> Knowledge { get; set; }
 
     }
 }

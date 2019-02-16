@@ -12,9 +12,6 @@ namespace DemoCore.Domain.Commands
             DescriptionEN = descriptionEN;
             DescriptionPT = descriptionPT;
             EntityState = entityState;
-            DateLastUpdate = DateTime.UtcNow;
-            IsNew = false;
-            HasChanges = true;
         }
 
         public override bool IsValid()

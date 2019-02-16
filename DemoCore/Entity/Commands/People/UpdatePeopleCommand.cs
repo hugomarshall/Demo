@@ -1,5 +1,4 @@
-﻿using DemoCore.Domain.Models;
-using DemoCore.Domain.Validations;
+﻿using DemoCore.Domain.Validations;
 using System;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
@@ -20,10 +19,7 @@ namespace DemoCore.Domain.Commands
             Portfolio = portfolio;
             IsDeveloper = isDeveloper;
             IsDesigner = isDesigner;
-            DateLastUpdate = DateTime.Now;
             EntityState = EntityStateOptions.Active;
-            HasChanges = true;
-            IsNew = false;
         }
         public override bool IsValid()
         {

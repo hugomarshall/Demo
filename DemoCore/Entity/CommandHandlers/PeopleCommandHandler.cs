@@ -13,9 +13,9 @@ using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 namespace DemoCore.Domain.CommandHandlers
 {
     public class PeopleCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewPeopleCommand>,
-        IRequestHandler<UpdatePeopleCommand>,
-        IRequestHandler<RemovePeopleCommand>
+        IRequestHandler<RegisterNewPeopleCommand, bool>,
+        IRequestHandler<UpdatePeopleCommand, bool>,
+        IRequestHandler<RemovePeopleCommand, bool>
     {
         private readonly IPeopleRepository peopleRepository;
         private readonly IMediatorHandler bus;
@@ -31,13 +31,12 @@ namespace DemoCore.Domain.CommandHandlers
 
         }
 
-        public Task<Unit> Handle(RegisterNewPeopleCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(RegisterNewPeopleCommand request, CancellationToken cancellationToken)
         {
             if(!request.IsValid())
             {
                 NotifyValidationErrors(request);
-                //return Unit.Value; //for async/await
-                return Unit.Task; //for pure Task-based methods
+                return Task.FromResult(false);
             }
 
             var people = new People()
@@ -63,8 +62,7 @@ namespace DemoCore.Domain.CommandHandlers
             if (peopleRepository.GetByEmail(people.Email) != null)
             {
                 bus.RaiseEvent(new DomainNotification(request.MessageType, "The people e-mail has already been taken."));
-                //return Unit.Value; //for async/await
-                return Unit.Task; //for pure Task-based methods
+                return Task.FromResult(false);
             }
 
             peopleRepository.Add(people);
@@ -73,16 +71,15 @@ namespace DemoCore.Domain.CommandHandlers
             {
                 bus.RaiseEvent(new PeopleRegisteredEvent(people.Id, people.Name, people.Email, people.Skype, people.Phone, people.LinkedIn, people.IsDeveloper, people.IsDesigner));
             }
-            //return Unit.Value; //for async/await
-            return Unit.Task; //for pure Task-based methods
+            return Task.FromResult(true);
         }
 
-        public Task<Unit> Handle(UpdatePeopleCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(UpdatePeopleCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Unit> Handle(RemovePeopleCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(RemovePeopleCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

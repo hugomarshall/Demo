@@ -2,13 +2,13 @@
 using AutoMapper.QueryableExtensions;
 using DemoCore.Application.Interfaces;
 using DemoCore.Application.ViewModels;
+using DemoCore.Domain.Commands;
 using DemoCore.Domain.Core.Bus;
 using DemoCore.Domain.Interfaces;
 using DemoCore.Infra.Data.Repositories.EventSourcing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DemoCore.Application.Services
 {
@@ -38,22 +38,25 @@ namespace DemoCore.Application.Services
 
         public DeveloperVM GetById(int id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<DeveloperVM>(developerRepository.GetById(id));
         }
 
         public void Register(DeveloperVM developerVM)
         {
-            throw new NotImplementedException();
+            var registerCommand = mapper.Map<RegisterNewDeveloperCommand>(developerVM);
+            bus.SendCommand(registerCommand);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            //var removeCommand = new RemoveQuestionCommand(id);
+            //bus.SendCommand(removeCommand);
         }
 
-        public void Update(DeveloperVM developerVM)
+        public void Update(DeveloperVM request)
         {
-            throw new NotImplementedException();
+            var updateCommand = mapper.Map<UpdateDeveloperCommand>(request);
+            bus.SendCommand(updateCommand);
         }
     }
 }

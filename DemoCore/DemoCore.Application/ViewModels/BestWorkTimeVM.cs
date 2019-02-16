@@ -19,7 +19,7 @@ namespace DemoCore.Application.ViewModels
         [Display(Name = "English Description")]
         public string DescriptionEN { get; set; }
         public EntityStateOptions EntityState { get; set; }
-        public ICollection<OccupationBestWorkTimeVM> Occupation { get; set; }
+        //public ICollection<OccupationBestWorkTimeVM> Occupation { get; set; }
 
     }
 }

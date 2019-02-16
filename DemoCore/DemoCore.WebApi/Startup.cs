@@ -7,6 +7,8 @@ using DemoCore.Infra.CrossCutting.Identity.Authorization;
 using DemoCore.Infra.CrossCutting.Identity.Data;
 using DemoCore.Infra.CrossCutting.Identity.Models;
 using DemoCore.Infra.CrossCutting.IoC;
+using DemoCore.Infra.Data.Context;
+using DemoCore.Infra.Data.Migrations;
 using DemoCore.WebAPI.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -85,8 +87,7 @@ namespace DemoCore.WebApi
 
             services.AddMvc(options =>
             {
-                //NOT Use in Web API.
-                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());   //Only in Presentation
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // .NET Native DI Abstraction
@@ -94,7 +95,7 @@ namespace DemoCore.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHttpContextAccessor accessor)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHttpContextAccessor accessor, DemoCoreContext context)
         {
             
 
@@ -126,6 +127,7 @@ namespace DemoCore.WebApi
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoCore Project API v1.0");
             });
 
+            new DemoCoreDbInitializer(context).Seed().Wait();
         }
 
         private static void RegisterServices(IServiceCollection services)

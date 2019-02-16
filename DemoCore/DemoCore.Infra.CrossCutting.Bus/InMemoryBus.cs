@@ -29,5 +29,6 @@ namespace DemoCore.Infra.CrossCutting.Bus
 
             return _mediator.Publish(@event);
         }
+
     }
 }

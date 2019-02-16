@@ -33,7 +33,7 @@ namespace DemoCore.Application.Services
 
         public IEnumerable<BestWorkTimeVM> GetAll()
         {
-            return bestWorkTimeRepository.GetAll().ProjectTo<BestWorkTimeVM>();
+            return bestWorkTimeRepository.GetAll().ProjectTo<BestWorkTimeVM>(mapper.ConfigurationProvider);
         }
 
         public BestWorkTimeVM GetById(int id)
@@ -41,9 +41,9 @@ namespace DemoCore.Application.Services
             return mapper.Map<BestWorkTimeVM>(bestWorkTimeRepository.GetById(id));
         }
 
-        public void Register(BestWorkTimeVM bestWorkVM)
+        public void Register(BestWorkTimeVM request)
         {
-            var registerCommand = mapper.Map<RegisterNewBestWorkTimeCommand>(bestWorkVM);
+            var registerCommand = mapper.Map<RegisterNewBestWorkTimeCommand>(request);
             bus.SendCommand(registerCommand);
         }
 

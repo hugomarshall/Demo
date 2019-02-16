@@ -1,5 +1,4 @@
 ﻿using DemoCore.Domain.Validations;
-using System;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Domain.Commands
@@ -12,9 +11,6 @@ namespace DemoCore.Domain.Commands
             DescriptionEN = descriptionEN;
             DescriptionPT = descriptionPT;
             EntityState = entityState;
-            DateLastUpdate = DateTime.UtcNow;
-            IsNew = false;
-            HasChanges = true;
         }
 
         public override bool IsValid()

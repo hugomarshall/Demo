@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using DemoCore.Infra.Data.Migrations;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace DemoCore.WebApi
@@ -12,7 +13,7 @@ namespace DemoCore.WebApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.UseKestrel()
+                .UseKestrel()
                 .UseStartup<Startup>();
     }
 }

@@ -20,11 +20,7 @@ namespace DemoCore.Domain.Commands
             Portfolio = portfolio;
             IsDeveloper = isDeveloper;
             IsDesigner = isDesigner;
-            DateCreated = DateTime.Now;
-            DateLastUpdate = null;
             EntityState = EntityStateOptions.Active;
-            HasChanges = false;
-            IsNew = true;
         }
 
         public override bool IsValid()

@@ -22,10 +22,6 @@ namespace DemoCore.Domain.Commands
         public Occupation Occupation { get; protected set; }
         public int KnowledgeId { get; protected set; }
         public Knowledge Knowledge { get; protected set; }
-        public DateTime DateCreated { get; protected set; }
-        public DateTime? DateLastUpdate { get; protected set; }
         public EntityStateOptions EntityState { get; protected set; }
-        public bool HasChanges { get; protected set; }
-        public bool IsNew { get; protected set; }
     }
 }

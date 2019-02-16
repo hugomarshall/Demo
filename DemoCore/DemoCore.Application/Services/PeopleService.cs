@@ -33,7 +33,7 @@ namespace DemoCore.Application.Services
 
         public IEnumerable<PeopleVM> GetAll()
         {
-            return peopleRepository.GetAll().ProjectTo<PeopleVM>();
+            return peopleRepository.GetAll().ProjectTo<PeopleVM>(mapper.ConfigurationProvider);
         }
 
         public PeopleVM GetById(int id)

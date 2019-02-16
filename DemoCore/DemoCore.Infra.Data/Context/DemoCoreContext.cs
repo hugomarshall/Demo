@@ -34,10 +34,6 @@ namespace DemoCore.Infra.Data.Context
             
 
             base.OnModelCreating(modelBuilder);
-
-            //populate database
-            //DemoCoreDbInitializer dbInitializer = new DemoCoreDbInitializer(this);
-            //Task.Run(async () => { await dbInitializer.Seed(); });
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

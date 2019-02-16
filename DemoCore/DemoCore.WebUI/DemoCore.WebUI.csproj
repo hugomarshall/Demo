@@ -11,4 +11,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoCore.Infra.CrossCutting.Identity\DemoCore.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\DemoCore.Infra.Data\DemoCore.Infra.Data.csproj" />
+    <ProjectReference Include="..\DemoCore.WebApi\DemoCore.WebAPI.csproj" />
+  </ItemGroup>
+
 </Project>

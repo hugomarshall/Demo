@@ -15,4 +15,10 @@
     <ProjectReference Include="..\DemoCore.Domain.Core\DemoCore.Domain.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Occupation\" />
+    <Folder Include="Validations\WorkAvailability\" />
+    <Folder Include="Validations\Occupation\" />
+  </ItemGroup>
+
 </Project>

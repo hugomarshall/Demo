@@ -1,6 +1,6 @@
 ﻿namespace DemoCore.Domain.Core.Enums
 {
-    public static class EntityStateEnum
+    public class EntityStateEnum
     {
         public enum EntityStateOptions
         {

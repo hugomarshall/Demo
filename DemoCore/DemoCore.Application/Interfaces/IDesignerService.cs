@@ -1,7 +1,6 @@
 ﻿using DemoCore.Application.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DemoCore.Application.Interfaces
 {

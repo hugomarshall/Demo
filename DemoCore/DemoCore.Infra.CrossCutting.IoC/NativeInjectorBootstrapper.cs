@@ -40,8 +40,12 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             // Application
-            services.AddScoped<IPeopleService, PeopleService>();
+            services.AddScoped<IBestWorkTimeService, BestWorkTimeService>();
+            services.AddScoped<IDesignerService, DesignerService>();
             services.AddScoped<IDeveloperService, DeveloperService>();
+            services.AddScoped<IPeopleService, PeopleService>();
+            services.AddScoped<IWorkAvailabilityService, WorkAvailabilityService>();
+            
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
@@ -50,13 +54,33 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<PeopleRemovedEvent>, PeopleEventHandler>();
 
             // Domain - Commands
-            services.AddScoped<IRequestHandler<RegisterNewPeopleCommand>, PeopleCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdatePeopleCommand>, PeopleCommandHandler>();
-            services.AddScoped<IRequestHandler<RemovePeopleCommand>, PeopleCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewPeopleCommand, bool>, PeopleCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdatePeopleCommand, bool>, PeopleCommandHandler>();
+            services.AddScoped<IRequestHandler<RemovePeopleCommand, bool>, PeopleCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewBestWorkTimeCommand, bool>, BestWorkTimeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateBestWorkTimeCommand, bool>, BestWorkTimeCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewDesignerCommand, bool>, DesignerCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateDesignerCommand, bool>, DesignerCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewDeveloperCommand, bool>, DeveloperCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateDeveloperCommand, bool>, DeveloperCommandHandler>();
+
+            //services.AddScoped<IRequestHandler<RegisterQuestionCommand>, WorkAvailabilityCommandHandler>();
+            //services.AddScoped<IRequestHandler<UpdateQuestionCommand>, WorkAvailabilityCommandHandler>();
+
 
             // Infra - Data
-            services.AddScoped<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IBestWorkTimeRepository, BestWorkTimeRepository>();
+            services.AddScoped<IDesignerRepository, DesignerRepository>();
             services.AddScoped<IDeveloperRepository, DeveloperRepository>();
+            services.AddScoped<IKnowledgeDesignerRepository, KnowledgeDesignerRepository>();
+            services.AddScoped<IKnowledgeDeveloperRepository, KnowledgeDeveloperRepository>();
+            services.AddScoped<IKnowledgeRepository, KnowledgeRepository>();
+            services.AddScoped<IOccupationBestWorkTimeRepository, OccupationBestWorkTimeRepository>();
+            services.AddScoped<IOccupationWorkAvailabilityRepository, OccupationWorkAvailabilityRepository>();
+            services.AddScoped<IOccupationRepository, OccupationRepository>();
+            services.AddScoped<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IWorkAvailabilityRepository, WorkAvailabilityRepository>();
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<DemoCoreContext>();
 
