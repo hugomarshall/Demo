@@ -4,21 +4,47 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <LangVersion>7.2</LangVersion>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <Content Remove="wwwroot\ts\main.ts" />
+    <Content Remove="wwwroot\ts\registerBestWorkTime.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="OdeToCode.UseNodeModules" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\BestWorkTime\" />
+    <Folder Include="Views\Developer\" />
+    <Folder Include="Views\Designer\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Manage\" />
+    <Folder Include="Views\People\" />
+    <Folder Include="Views\Shared\Components\Summary\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DemoCore.Infra.CrossCutting.Identity\DemoCore.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\DemoCore.Infra.Data\DemoCore.Infra.Data.csproj" />
     <ProjectReference Include="..\DemoCore.WebApi\DemoCore.WebAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\ts\main.ts" />
+    <TypeScriptCompile Include="wwwroot\ts\registerBestWorkTime.ts" />
   </ItemGroup>
 
 </Project>

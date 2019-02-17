@@ -133,6 +133,7 @@ namespace DemoCore.WebApi
             });
 
             //app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoCore.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class BestWorkTimeController : ApiController
     {
         private readonly IBestWorkTimeService bestWorkService;

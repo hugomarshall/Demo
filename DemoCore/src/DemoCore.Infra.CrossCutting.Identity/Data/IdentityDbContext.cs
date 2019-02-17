@@ -1,23 +1,26 @@
 ﻿using DemoCore.Infra.CrossCutting.Identity.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace DemoCore.Infra.CrossCutting.Identity.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        private readonly IHostingEnvironment env;
+        public ApplicationDbContext(
+                    DbContextOptions<ApplicationDbContext> options,
+                    IHostingEnvironment env) : base(options)
         {
+            this.env = env;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .Build();
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using DemoCore.Infra.CrossCutting.Identity.Services;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
