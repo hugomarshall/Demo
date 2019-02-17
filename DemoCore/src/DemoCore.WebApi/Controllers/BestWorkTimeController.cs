@@ -28,7 +28,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "CanReadBestWorkTimeData")]
         [Route("bestworktime-management/{id:int}")]
         public IActionResult Get(int id)
         {
@@ -38,7 +38,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteBestWorkTimeData")]
         [Route("bestworktime-management")]
         public IActionResult Post([FromBody]BestWorkTimeVM request)
         {
@@ -54,7 +54,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteBestWorkTimeData")]
         [Route("bestworktime-management")]
         public IActionResult Put([FromBody]BestWorkTimeVM request)
         {
@@ -70,7 +70,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Authorize(Policy = "CanRemoveBestWorkTimeData")]
         [Route("bestworktime-management")]
         public IActionResult Delete(int id)
         {

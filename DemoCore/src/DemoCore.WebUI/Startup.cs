@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DemoCore.Infra.CrossCutting.Identity.Authorization;
+using DemoCore.Infra.CrossCutting.Identity.Data;
 using DemoCore.Infra.CrossCutting.Identity.Models;
 using DemoCore.Infra.CrossCutting.IoC;
 using DemoCore.Infra.Data.Context;
@@ -36,7 +37,7 @@ namespace DemoCore.WebUI
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<DemoCoreContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

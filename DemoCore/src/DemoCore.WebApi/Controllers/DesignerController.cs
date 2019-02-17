@@ -28,7 +28,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "CanReadDesignerData")]
         [Route("designer-management/{id:int}")]
         public IActionResult Get(int id)
         {
@@ -38,7 +38,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteDesignerData")]
         [Route("designer-management")]
         public IActionResult Post([FromBody]DesignerVM request)
         {
@@ -54,7 +54,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteDesignerData")]
         [Route("designer-management")]
         public IActionResult Put([FromBody]DesignerVM request)
         {
@@ -70,7 +70,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Authorize(Policy = "CanRemoveDesignerData")]
         [Route("designer-management")]
         public IActionResult Delete(int id)
         {

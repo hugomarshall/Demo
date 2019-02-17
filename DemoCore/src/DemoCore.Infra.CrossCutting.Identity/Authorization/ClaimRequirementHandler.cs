@@ -11,8 +11,8 @@ namespace DemoCore.Infra.CrossCutting.Identity.Authorization
                                                        ClaimRequirement requirement)
         {
 
-            var claim = context.User.Claims.FirstOrDefault(c => c.Type == requirement.ClaimName);
-            if (claim != null && claim.Value.Contains(requirement.ClaimValue))
+            var claim = context.User.Claims.FirstOrDefault(c => c.Type == requirement.ClaimName && c.Value == requirement.ClaimValue);
+            if (claim != null)
             {
                 context.Succeed(requirement);
             }

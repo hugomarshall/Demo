@@ -27,7 +27,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "CanReadPeopleData")]
         [Route("people-management/{id:int}")]
         public IActionResult Get(int id)
         {
@@ -37,7 +37,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWritePeopleData")]
         [Route("people-management")]
         public IActionResult Post([FromBody]PeopleVM peopleVM)
         {
@@ -53,7 +53,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWritePeopleData")]
         [Route("people-management")]
         public IActionResult Put([FromBody]PeopleVM peopleVM)
         {
@@ -69,7 +69,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Authorize(Policy = "CanRemovePeopleData")]
         [Route("people-management")]
         public IActionResult Delete(int id)
         {

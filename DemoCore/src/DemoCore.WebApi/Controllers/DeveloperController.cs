@@ -26,7 +26,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "CanReadDeveloperData")]
         [Route("developer-management/{id:int}")]
         public IActionResult Get(int id)
         {
@@ -36,7 +36,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteDeveloperData")]
         [Route("developer-management")]
         public IActionResult Post([FromBody]DeveloperVM request)
         {
@@ -52,7 +52,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteDeveloperData")]
         [Route("developer-management")]
         public IActionResult Put([FromBody]DeveloperVM request)
         {
@@ -68,7 +68,7 @@ namespace DemoCore.WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Authorize(Policy = "CanRemoveDeveloperData")]
         [Route("developer-management")]
         public IActionResult Delete(int id)
         {
