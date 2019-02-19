@@ -1,5 +1,5 @@
 ﻿{
-  "include": [ "wwwroot/ts/**/*.ts" ],
+  "include": [ "wwwroot/ts/**/*.ts", "../../tests/DemoCore.Tests.XUnitTestProject/Repositories/DeveloperRepositoryUT.cs" ],
   "compilerOptions": {
     "target": "es5",
     "sourceMap": true

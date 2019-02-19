@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DemoCore.Infra.CrossCutting.Identity.Authorization;
+﻿using DemoCore.Infra.CrossCutting.Identity.Authorization;
 using DemoCore.Infra.CrossCutting.Identity.Data;
 using DemoCore.Infra.CrossCutting.Identity.Models;
 using DemoCore.Infra.CrossCutting.IoC;
-using DemoCore.Infra.Data.Context;
-using DemoCore.WebAPI.Configurations;
+using DemoCore.WebUI.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -33,7 +28,7 @@ namespace DemoCore.WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DemoCoreContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -68,8 +63,25 @@ namespace DemoCore.WebUI
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
-                options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.AddPolicy("CanReadPeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Read")));
+                options.AddPolicy("CanWritePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Write")));
+                options.AddPolicy("CanRemovePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Delete")));
+
+                options.AddPolicy("CanReadBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Read")));
+                options.AddPolicy("CanWriteBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Write")));
+                options.AddPolicy("CanRemoveBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Delete")));
+
+                options.AddPolicy("CanReadDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Read")));
+                options.AddPolicy("CanWriteDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Write")));
+                options.AddPolicy("CanRemoveDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Delete")));
+
+                options.AddPolicy("CanReadDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Read")));
+                options.AddPolicy("CanWriteDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Write")));
+                options.AddPolicy("CanRemoveDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Delete")));
+
+                options.AddPolicy("CanReadWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Read")));
+                options.AddPolicy("CanWriteWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Write")));
+                options.AddPolicy("CanRemoveWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Delete")));
             });
 
             // Adding MediatR for Domain Events and Notifications
@@ -90,11 +102,11 @@ namespace DemoCore.WebUI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app.UseExceptionHandler("/Error");
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();

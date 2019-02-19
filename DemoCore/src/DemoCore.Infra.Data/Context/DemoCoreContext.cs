@@ -1,8 +1,6 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System;
 using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.EntityConfigs;
-using DemoCore.Infra.Data.Migrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -39,7 +37,7 @@ namespace DemoCore.Infra.Data.Context
         {
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .Build();
 

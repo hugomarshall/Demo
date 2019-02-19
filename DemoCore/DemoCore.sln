@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCore.Infra.CrossCutting
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCore.Application", "src\DemoCore.Application\DemoCore.Application.csproj", "{30F12723-0587-46D6-A90D-9A7B32F8D01C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3371EAA6-CE16-463B-B752-33A0924B60E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCore.Tests.XUnitTestProject", "tests\DemoCore.Tests.XUnitTestProject\DemoCore.Tests.XUnitTestProject.csproj", "{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,10 @@ Global
 		{30F12723-0587-46D6-A90D-9A7B32F8D01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30F12723-0587-46D6-A90D-9A7B32F8D01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30F12723-0587-46D6-A90D-9A7B32F8D01C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +114,7 @@ Global
 		{B1738C05-5897-4C34-97B2-780878D6B4B3} = {4166148C-2B2F-4297-9865-82DDDC0B5B86}
 		{0E14E44D-D7E0-45A2-B72A-D0A41CC943D9} = {4166148C-2B2F-4297-9865-82DDDC0B5B86}
 		{30F12723-0587-46D6-A90D-9A7B32F8D01C} = {030C1ACA-A8D3-4D03-8041-F2D076C3B9EC}
+		{1D769EDC-6E13-48D9-BA13-85D33CFBAB0B} = {3371EAA6-CE16-463B-B752-33A0924B60E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9AACCCF-6901-44F7-A66C-B1852D67BA4C}

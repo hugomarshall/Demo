@@ -3,3 +3,4 @@ var RegisterBestWorkTime = /** @class */ (function () {
     }
     return RegisterBestWorkTime;
 }());
+//# sourceMappingURL=registerBestWorkTime.js.map

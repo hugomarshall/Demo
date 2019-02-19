@@ -29,7 +29,7 @@ namespace DemoCore.WebUI.Controllers
 
         [HttpGet]
         [Authorize(Policy = "CanReadBestWorkTimeData")]
-        [Route("bestworktime-management/customer-details/{id:int}")]
+        [Route("bestworktime-management/bestworktime-details/{id:int}")]
         public IActionResult Details(int? id)
         {
             if (id == null)
