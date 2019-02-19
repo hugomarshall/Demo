@@ -1,13 +1,20 @@
-﻿using System;
+﻿
 using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.EntityConfigs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace DemoCore.Infra.Data.Context
 {
     public class DemoCoreContext: DbContext
     {
+        private readonly IHostingEnvironment env;
+
+        public DemoCoreContext(IHostingEnvironment env)
+        {
+            this.env = env;
+        }
         public DbSet<People> People { get; set; }
         public DbSet<Occupation> Occupation { get; set; }
         public DbSet<BestWorkTime> BestWorkTime { get; set; }
@@ -37,7 +44,7 @@ namespace DemoCore.Infra.Data.Context
         {
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .Build();
 

@@ -14,7 +14,8 @@ namespace DemoCore.Domain.CommandHandlers
 {
     public class BestWorkTimeCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewBestWorkTimeCommand, bool>,
-        IRequestHandler<UpdateBestWorkTimeCommand, bool>
+        IRequestHandler<UpdateBestWorkTimeCommand, bool>,
+        IRequestHandler<RemoveBestWorkTimeCommand, bool>
     {
         private readonly IBestWorkTimeRepository bwtRepository;
         private readonly IMediatorHandler bus;
@@ -82,6 +83,33 @@ namespace DemoCore.Domain.CommandHandlers
         public void Dispose()
         {
             bwtRepository.Dispose();
+        }
+
+        public Task<bool> Handle(RemoveBestWorkTimeCommand request, CancellationToken cancellationToken)
+        {
+            if (!request.IsValid())
+            {
+                NotifyValidationErrors(request);
+                return Task.FromResult(false);
+            }
+
+            var model = bwtRepository.GetById(request.Id);
+            if (model == null)
+            {
+                NotifyValidationErrors(request);
+                return Task.FromResult(false);
+            }
+            model.EntityState = EntityStateOptions.Deleted;
+            model.DateLastUpdate = DateTime.UtcNow;
+            model.HasChanges = true;
+            
+            bwtRepository.Update(model);
+
+            if (Commit())
+            {
+                bus.RaiseEvent(new BestWorkTimeRemovedEvent(model.Id));
+            }
+            return Task.FromResult(true);
         }
     }
 }

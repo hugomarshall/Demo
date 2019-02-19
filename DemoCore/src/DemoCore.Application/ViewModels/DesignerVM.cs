@@ -17,6 +17,7 @@ namespace DemoCore.Application.ViewModels
         [MaxLength(500)]
         [Display(Name = "Portuguese Description")]
         public string DescriptionPT { get; set; }
+        [Display(Name = "Entity State")]
         public EntityStateOptions EntityState { get; set; }
         //public virtual ICollection<KnowledgeDesignerVM> Knowledge { get; set; }
 

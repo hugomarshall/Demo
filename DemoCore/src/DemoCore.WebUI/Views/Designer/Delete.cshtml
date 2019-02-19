@@ -1,0 +1,48 @@
+﻿@model DemoCore.Application.ViewModels.DesignerVM
+
+@{
+    ViewData["Title"] = "Delete Designer";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Delete">
+    <vc:summary />
+
+    <h3>Are you sure you want to delete the @Model.DescriptionEN ?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DescriptionEN)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DescriptionEN)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DescriptionPT)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DescriptionPT)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EntityState)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EntityState)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">Back to List</a>
+        </div>
+    </div>
+</form>

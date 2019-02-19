@@ -49,8 +49,8 @@ namespace DemoCore.Application.Services
 
         public void Remove(int id)
         {
-            //var removeCommand = new RemoveQuestionCommand(id);
-            //bus.SendCommand(removeCommand);
+            var removeCommand = new RemoveDeveloperCommand(id);
+            bus.SendCommand(removeCommand);
         }
 
         public void Update(DeveloperVM request)

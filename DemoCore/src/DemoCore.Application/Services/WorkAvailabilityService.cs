@@ -44,19 +44,19 @@ namespace DemoCore.Application.Services
 
         public void Register(WorkAvailabilityVM request)
         {
-            var registerCommand = mapper.Map<RegisterQuestionCommand>(request);
+            var registerCommand = mapper.Map<RegisterNewWorkAvailabilityCommand>(request);
             bus.SendCommand(registerCommand);
         }
 
         public void Remove(int id)
         {
-            //var removeCommand = new RemoveQuestionCommand(id);
-            //bus.SendCommand(removeCommand);
+            var removeCommand = new RemoveWorkAvailabilityCommand(id);
+            bus.SendCommand(removeCommand);
         }
 
         public void Update(WorkAvailabilityVM request)
         {
-            var updateCommand = mapper.Map<UpdateQuestionCommand>(request);
+            var updateCommand = mapper.Map<UpdateWorkAvailabilityCommand>(request);
             bus.SendCommand(updateCommand);
         }
     }

@@ -49,8 +49,8 @@ namespace DemoCore.Application.Services
 
         public void Remove(int id)
         {
-            //var removeCommand = new RemoveBestWorkTimeCommand(id);
-            //bus.SendCommand(removeCommand);
+            var removeCommand = new RemoveBestWorkTimeCommand(id);
+            bus.SendCommand(removeCommand);
         }
 
         public void Update(BestWorkTimeVM bestWorkVM)

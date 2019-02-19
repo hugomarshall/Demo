@@ -3,19 +3,18 @@ using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Domain.Commands
 {
-    public class UpdateQuestionCommand : QuestionCommand
+    public class RegisterNewWorkAvailabilityCommand : WorkAvailabilityCommand
     {
-        public UpdateQuestionCommand(int id, string descriptionPT, string descriptionEN, EntityStateOptions entityState)
+        public RegisterNewWorkAvailabilityCommand(string descriptionEN, string descriptionPT)
         {
-            Id = id;
+            Id = 0;
             DescriptionEN = descriptionEN;
             DescriptionPT = descriptionPT;
-            EntityState = entityState;
         }
 
         public override bool IsValid()
         {
-            ValidationResult = new UpdateQuestionCommandValidation().Validate(this);
+            ValidationResult = new RegisterWorkAvailabilityCommandValidation().Validate(this);
             return ValidationResult.IsValid;
         }
     }

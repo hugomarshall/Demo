@@ -48,8 +48,8 @@ namespace DemoCore.Application.Services
 
         public void Remove(int id)
         {
-            //var removeCommand = new RemoveDesignerCommand(id);
-            //bus.SendCommand(removeCommand);
+            var removeCommand = new RemoveDesignerCommand(id);
+            bus.SendCommand(removeCommand);
         }
 
         public void Update(DesignerVM request)

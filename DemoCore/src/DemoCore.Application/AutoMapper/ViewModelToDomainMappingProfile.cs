@@ -26,10 +26,10 @@ namespace DemoCore.Application.AutoMapper
                 .ConstructUsing(c => new RegisterNewPeopleCommand(c.Name, c.Email, c.Skype, c.Phone, c.LinkedIn, c.City, c.State, c.Portfolio, c.IsDeveloper, c.IsDesigner)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
             CreateMap<PeopleVM, UpdatePeopleCommand>()
                 .ConstructUsing(c => new UpdatePeopleCommand(c.Id, c.Name, c.Email, c.Skype, c.Phone, c.LinkedIn, c.City, c.State, c.Portfolio, c.IsDeveloper, c.IsDesigner)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
-            CreateMap<WorkAvailabilityVM, RegisterQuestionCommand>()
-                .ConstructUsing(c => new RegisterQuestionCommand(c.DescriptionPT, c.DescriptionEN, c.EntityState)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
-            CreateMap<WorkAvailabilityVM, UpdateQuestionCommand>()
-                .ConstructUsing(c => new UpdateQuestionCommand(c.Id, c.DescriptionPT, c.DescriptionEN, c.EntityState)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
+            CreateMap<WorkAvailabilityVM, RegisterNewWorkAvailabilityCommand>()
+                .ConstructUsing(c => new RegisterNewWorkAvailabilityCommand(c.DescriptionPT, c.DescriptionEN)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
+            CreateMap<WorkAvailabilityVM, UpdateWorkAvailabilityCommand>()
+                .ConstructUsing(c => new UpdateWorkAvailabilityCommand(c.Id, c.DescriptionPT, c.DescriptionEN, c.EntityState)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
 
 
         }

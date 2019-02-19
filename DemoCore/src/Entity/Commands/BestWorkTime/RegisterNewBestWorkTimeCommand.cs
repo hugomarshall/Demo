@@ -1,5 +1,4 @@
 ﻿using DemoCore.Domain.Validations;
-using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Domain.Commands
 {

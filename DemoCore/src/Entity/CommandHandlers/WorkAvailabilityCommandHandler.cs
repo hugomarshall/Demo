@@ -8,12 +8,14 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Domain.CommandHandlers
 {
     public class WorkAvailabilityCommandHandler : CommandHandler,
-        IRequestHandler<RegisterQuestionCommand, bool>,
-        IRequestHandler<UpdateQuestionCommand, bool>
+        IRequestHandler<RegisterNewWorkAvailabilityCommand, bool>,
+        IRequestHandler<UpdateWorkAvailabilityCommand, bool>,
+        IRequestHandler<RemoveWorkAvailabilityCommand, bool>
     {
         private readonly IWorkAvailabilityRepository waRepository;
         private readonly IMediatorHandler bus;
@@ -25,7 +27,7 @@ namespace DemoCore.Domain.CommandHandlers
             this.bus = bus;
         }
 
-        public Task<bool> Handle(RegisterQuestionCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(RegisterNewWorkAvailabilityCommand request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
@@ -37,7 +39,7 @@ namespace DemoCore.Domain.CommandHandlers
             {
                 DescriptionEN = request.DescriptionEN,
                 DescriptionPT = request.DescriptionPT,
-                EntityState = request.EntityState,
+                EntityState = EntityStateOptions.Active,
                 DateCreated = DateTime.UtcNow,
                 DateLastUpdate = null
             };
@@ -53,7 +55,7 @@ namespace DemoCore.Domain.CommandHandlers
             return Task.FromResult(true);
         }
 
-        public Task<bool> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(UpdateWorkAvailabilityCommand request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
@@ -74,6 +76,33 @@ namespace DemoCore.Domain.CommandHandlers
             if (Commit())
             {
                 bus.RaiseEvent(new WorkAvailabilityUpdatedEvent(model.Id, model.DescriptionPT, model.DescriptionEN, model.EntityState, model.DateCreated));
+            }
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> Handle(RemoveWorkAvailabilityCommand request, CancellationToken cancellationToken)
+        {
+            if (!request.IsValid())
+            {
+                NotifyValidationErrors(request);
+                return Task.FromResult(false);
+            }
+
+            var model = waRepository.GetById(request.Id);
+            if (model == null)
+            {
+                NotifyValidationErrors(request);
+                return Task.FromResult(false);
+            }
+            model.EntityState = EntityStateOptions.Deleted;
+            model.DateLastUpdate = DateTime.UtcNow;
+            model.HasChanges = true;
+
+            waRepository.Update(model);
+
+            if (Commit())
+            {
+                bus.RaiseEvent(new WorkAvailabilityRemovedEvent(model.Id));
             }
             return Task.FromResult(true);
         }

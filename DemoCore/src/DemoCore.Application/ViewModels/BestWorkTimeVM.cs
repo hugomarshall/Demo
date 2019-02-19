@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Application.ViewModels
@@ -18,6 +17,7 @@ namespace DemoCore.Application.ViewModels
         [MaxLength(500)]
         [Display(Name = "English Description")]
         public string DescriptionEN { get; set; }
+        [Display(Name = "Entity State")]
         public EntityStateOptions EntityState { get; set; }
         //public ICollection<OccupationBestWorkTimeVM> Occupation { get; set; }
 

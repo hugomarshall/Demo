@@ -57,15 +57,22 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<RegisterNewPeopleCommand, bool>, PeopleCommandHandler>();
             services.AddScoped<IRequestHandler<UpdatePeopleCommand, bool>, PeopleCommandHandler>();
             services.AddScoped<IRequestHandler<RemovePeopleCommand, bool>, PeopleCommandHandler>();
+
             services.AddScoped<IRequestHandler<RegisterNewBestWorkTimeCommand, bool>, BestWorkTimeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateBestWorkTimeCommand, bool>, BestWorkTimeCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveBestWorkTimeCommand, bool>, BestWorkTimeCommandHandler>();
+
             services.AddScoped<IRequestHandler<RegisterNewDesignerCommand, bool>, DesignerCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateDesignerCommand, bool>, DesignerCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveDesignerCommand, bool>, DesignerCommandHandler>();
+
             services.AddScoped<IRequestHandler<RegisterNewDeveloperCommand, bool>, DeveloperCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateDeveloperCommand, bool>, DeveloperCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveDeveloperCommand, bool>, DeveloperCommandHandler>();
 
-            //services.AddScoped<IRequestHandler<RegisterQuestionCommand>, WorkAvailabilityCommandHandler>();
-            //services.AddScoped<IRequestHandler<UpdateQuestionCommand>, WorkAvailabilityCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewWorkAvailabilityCommand, bool>, WorkAvailabilityCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateWorkAvailabilityCommand, bool>, WorkAvailabilityCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveWorkAvailabilityCommand, bool>, WorkAvailabilityCommandHandler>();
 
 
             // Infra - Data

@@ -15,9 +15,5 @@ namespace DemoCore.Application.ViewModels
         public string Other { get; set; }
         public string UrlLinkCRUD { get; set; }
         public EntityStateOptions EntityState { get; set; }
-        public bool HasChanges { get; set; }
-        public bool IsNew { get; protected set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? DateLastUpdate { get; set; }
     }
 }

@@ -18,12 +18,12 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="OdeToCode.UseNodeModules" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\People\" />
-    <Folder Include="Views\Shared\Components\Summary\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
