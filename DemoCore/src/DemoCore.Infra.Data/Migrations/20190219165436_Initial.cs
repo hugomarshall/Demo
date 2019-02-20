@@ -8,17 +8,21 @@ namespace DemoCore.Infra.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "DemoCoreData");
+
             migrationBuilder.CreateTable(
                 name: "BestWorkTime",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
-                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false)
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,15 +32,16 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Designer",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
-                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,15 +51,16 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Developer",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
-                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,13 +70,11 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "People",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Skype = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -80,7 +84,10 @@ namespace DemoCore.Infra.Data.Migrations
                     State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Portfolio = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     IsDeveloper = table.Column<bool>(type: "bit", nullable: false),
-                    IsDesigner = table.Column<bool>(nullable: false)
+                    IsDesigner = table.Column<bool>(nullable: false),
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,15 +97,16 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "WorkAvailability",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DescriptionEN = table.Column<string>(type: "nvarchar(500)", nullable: false),
-                    DescriptionPT = table.Column<string>(type: "nvarchar(500)", nullable: false)
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,16 +116,17 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Knowledge",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true),
                     PeopleId = table.Column<int>(nullable: false),
                     Other = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    UrlLinkCRUD = table.Column<string>(nullable: true)
+                    UrlLinkCRUD = table.Column<string>(nullable: true),
+                    EntityState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -127,6 +136,7 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Knowledge_People_PeopleId",
                         column: x => x.PeopleId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -134,16 +144,17 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Occupation",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PeopleId = table.Column<int>(nullable: false),
                     EntityState = table.Column<int>(nullable: false),
                     HasChanges = table.Column<bool>(nullable: false),
                     IsNew = table.Column<bool>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateLastUpdate = table.Column<DateTime>(nullable: true),
-                    PeopleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,6 +164,7 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Occupation_People_PeopleId",
                         column: x => x.PeopleId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -160,6 +172,7 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "KnowledgeDesigner",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -174,12 +187,14 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_KnowledgeDesigner_Designer_DesignerId",
                         column: x => x.DesignerId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Designer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_KnowledgeDesigner_Knowledge_KnowledgeId",
                         column: x => x.KnowledgeId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Knowledge",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -187,6 +202,7 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "KnowledgeDeveloper",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -201,12 +217,14 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_KnowledgeDeveloper_Developer_DeveloperId",
                         column: x => x.DeveloperId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Developer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_KnowledgeDeveloper_Knowledge_KnowledgeId",
                         column: x => x.KnowledgeId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Knowledge",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -214,6 +232,7 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "OccupationBestWorkTime",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -227,12 +246,14 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_OccupationBestWorkTime_BestWorkTime_BestWorkTimeId",
                         column: x => x.BestWorkTimeId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "BestWorkTime",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OccupationBestWorkTime_Occupation_OccupationId",
                         column: x => x.OccupationId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Occupation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -240,6 +261,7 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "OccupationWorkAvailability",
+                schema: "DemoCoreData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -253,12 +275,14 @@ namespace DemoCore.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_OccupationWorkAvailability_Occupation_OccupationId",
                         column: x => x.OccupationId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "Occupation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OccupationWorkAvailability_WorkAvailability_WorkAvailabilityId",
                         column: x => x.WorkAvailabilityId,
+                        principalSchema: "DemoCoreData",
                         principalTable: "WorkAvailability",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -266,41 +290,49 @@ namespace DemoCore.Infra.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_KnowledgeDesigner_DesignerId",
+                schema: "DemoCoreData",
                 table: "KnowledgeDesigner",
                 column: "DesignerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_KnowledgeDesigner_KnowledgeId",
+                schema: "DemoCoreData",
                 table: "KnowledgeDesigner",
                 column: "KnowledgeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_KnowledgeDeveloper_DeveloperId",
+                schema: "DemoCoreData",
                 table: "KnowledgeDeveloper",
                 column: "DeveloperId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_KnowledgeDeveloper_KnowledgeId",
+                schema: "DemoCoreData",
                 table: "KnowledgeDeveloper",
                 column: "KnowledgeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccupationBestWorkTime_BestWorkTimeId",
+                schema: "DemoCoreData",
                 table: "OccupationBestWorkTime",
                 column: "BestWorkTimeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccupationBestWorkTime_OccupationId",
+                schema: "DemoCoreData",
                 table: "OccupationBestWorkTime",
                 column: "OccupationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccupationWorkAvailability_OccupationId",
+                schema: "DemoCoreData",
                 table: "OccupationWorkAvailability",
                 column: "OccupationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccupationWorkAvailability_WorkAvailabilityId",
+                schema: "DemoCoreData",
                 table: "OccupationWorkAvailability",
                 column: "WorkAvailabilityId");
         }
@@ -308,37 +340,48 @@ namespace DemoCore.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "KnowledgeDesigner");
+                name: "KnowledgeDesigner",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "KnowledgeDeveloper");
+                name: "KnowledgeDeveloper",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "OccupationBestWorkTime");
+                name: "OccupationBestWorkTime",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "OccupationWorkAvailability");
+                name: "OccupationWorkAvailability",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "Designer");
+                name: "Designer",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "Developer");
+                name: "Developer",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "Knowledge");
+                name: "Knowledge",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "BestWorkTime");
+                name: "BestWorkTime",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "Occupation");
+                name: "Occupation",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "WorkAvailability");
+                name: "WorkAvailability",
+                schema: "DemoCoreData");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "People",
+                schema: "DemoCoreData");
         }
     }
 }

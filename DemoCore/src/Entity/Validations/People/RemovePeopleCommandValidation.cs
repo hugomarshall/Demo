@@ -6,7 +6,7 @@ namespace DemoCore.Domain.Validations
     {
         public RemovePeopleCommandValidation()
         {
-
+            ValidateRemove();
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using DemoCore.Infra.CrossCutting.Identity.Authorization;
 using DemoCore.Infra.CrossCutting.Identity.Data;
+using DemoCore.Infra.CrossCutting.Identity.Extensions;
 using DemoCore.Infra.CrossCutting.Identity.Migrations;
 using DemoCore.Infra.CrossCutting.Identity.Models;
 using DemoCore.Infra.CrossCutting.IoC;
@@ -15,15 +12,12 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace DemoCore.WebApi
@@ -51,8 +45,19 @@ namespace DemoCore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DemoCoreContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions =>
+            {
+                sqlServerOptions.MigrationsAssembly("DemoCore.Infra.Data.Context");
+            }));
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions =>
+            {
+                sqlServerOptions.MigrationsAssembly("DemoCore.Infra.CrossCutting.Identity");
+            }));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -66,28 +71,7 @@ namespace DemoCore.WebApi
 
             services.AddAutoMapperSetup();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("CanReadPeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Read")));
-                options.AddPolicy("CanWritePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Write")));
-                options.AddPolicy("CanRemovePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Delete")));
-
-                options.AddPolicy("CanReadBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Read")));
-                options.AddPolicy("CanWriteBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Write")));
-                options.AddPolicy("CanRemoveBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Delete")));
-
-                options.AddPolicy("CanReadDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Read")));
-                options.AddPolicy("CanWriteDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Write")));
-                options.AddPolicy("CanRemoveDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Delete")));
-
-                options.AddPolicy("CanReadDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Read")));
-                options.AddPolicy("CanWriteDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Write")));
-                options.AddPolicy("CanRemoveDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Delete")));
-
-                options.AddPolicy("CanReadWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Read")));
-                options.AddPolicy("CanWriteWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Write")));
-                options.AddPolicy("CanRemoveWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Delete")));
-            });
+            services.AddPoliciesSetup();
 
             services.AddSwaggerGen(s =>
             {

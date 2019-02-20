@@ -64,7 +64,7 @@ namespace DemoCore.WebUI.Controllers
             waService.Register(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Registered!";
+                ViewBag.Sucesso = "Work Availability Registered!";
 
             return View(request);
         }
@@ -91,7 +91,7 @@ namespace DemoCore.WebUI.Controllers
 
         [HttpPost]
         [Authorize(Policy = "CanWriteWorkAvailabilityData")]
-        [Route("workavailability-management/edit-workavailability/{id:guid}")]
+        [Route("workavailability-management/edit-workavailability/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(WorkAvailabilityVM request)
         {
@@ -100,7 +100,7 @@ namespace DemoCore.WebUI.Controllers
             waService.Update(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Updated!";
+                ViewBag.Sucesso = "Work Availability Updated!";
 
             return View(request);
         }
@@ -135,7 +135,7 @@ namespace DemoCore.WebUI.Controllers
 
             if (!IsValidOperation()) return View(waService.GetById(id));
 
-            ViewBag.Sucesso = "Best Work Time Removed!";
+            ViewBag.Sucesso = "Work Availability Removed!";
             return RedirectToAction("Index");
         }
 

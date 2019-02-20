@@ -64,7 +64,7 @@ namespace DemoCore.WebUI.Controllers
             developerService.Register(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Registered!";
+                ViewBag.Sucesso = "Developer Registered!";
 
             return View(request);
         }
@@ -91,7 +91,7 @@ namespace DemoCore.WebUI.Controllers
 
         [HttpPost]
         [Authorize(Policy = "CanWriteDeveloperData")]
-        [Route("developer-management/edit-developer/{id:guid}")]
+        [Route("developer-management/edit-developer/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(DeveloperVM request)
         {
@@ -100,7 +100,7 @@ namespace DemoCore.WebUI.Controllers
             developerService.Update(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Updated!";
+                ViewBag.Sucesso = "Developer Updated!";
 
             return View(request);
         }
@@ -135,7 +135,7 @@ namespace DemoCore.WebUI.Controllers
 
             if (!IsValidOperation()) return View(developerService.GetById(id));
 
-            ViewBag.Sucesso = "Best Work Time Removed!";
+            ViewBag.Sucesso = "Developer Removed!";
             return RedirectToAction("Index");
         }
 

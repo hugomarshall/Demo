@@ -11,6 +11,7 @@ namespace DemoCore.Application.Interfaces
         PeopleVM GetById(int id);
         void Update(PeopleVM peopleVM);
         void Remove(int id);
-        //IList<CustomerHistoryData> GetAllHistory(Guid id);
+        PeopleVM GetByEmail(string email);
+        //IList<PeopleHistoryData> GetAllHistory(Guid id);
     }
 }

@@ -63,14 +63,19 @@ namespace DemoCore.Domain.CommandHandlers
                 return Task.FromResult(false);
             }
 
-            var model = new Designer(request.Id)
+            var model = designerRepository.GetById(request.Id);
+            if (model == null)
             {
-                DescriptionEN = request.DescriptionEN,
-                DescriptionPT = request.DescriptionPT,
-                EntityState = request.EntityState,
-                DateLastUpdate = DateTime.UtcNow,
-                HasChanges = true
-            };
+                bus.RaiseEvent(new DomainNotification(request.MessageType, "This Designer not found."));
+                return Task.FromResult(false);
+            }
+
+            model.DescriptionEN = request.DescriptionEN;
+            model.DescriptionPT = request.DescriptionPT;
+            model.EntityState = request.EntityState;
+            model.DateLastUpdate = DateTime.UtcNow;
+            model.HasChanges = true;
+
             designerRepository.Update(model);
 
             if (Commit())

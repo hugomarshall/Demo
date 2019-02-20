@@ -7,8 +7,13 @@ namespace DemoCore.Domain.Validations
     {
         protected void ValidateWorkAvailability()
         {
-            RuleFor(x => x.DescriptionEN).NotEmpty().WithMessage("");
-            RuleFor(x => x.DescriptionPT).NotEmpty().WithMessage("");
+            RuleFor(x => x.DescriptionEN).NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.DescriptionPT).NotEmpty().WithMessage("{PropertyName} is required.");
+        }
+
+        protected void ValidateRemove()
+        {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }
 }

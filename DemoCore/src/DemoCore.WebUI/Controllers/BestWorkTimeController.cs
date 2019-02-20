@@ -92,7 +92,7 @@ namespace DemoCore.WebUI.Controllers
 
         [HttpPost]
         [Authorize(Policy = "CanWriteBestWorkTimeData")]
-        [Route("bestworktime-management/edit-bestworktime/{id:guid}")]
+        [Route("bestworktime-management/edit-bestworktime/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(BestWorkTimeVM request)
         {
@@ -141,7 +141,7 @@ namespace DemoCore.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        [Route("bestworktime-management/bestworktime-history/{id:guid}")]
+        [Route("bestworktime-management/bestworktime-history/{id:int}")]
         public JsonResult History(Guid id)
         {
             //var customerHistoryData = bwtService.GetAllHistory(id);

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("OccupationWorkAvailability", Schema = "DemoCoreData")]
     public class OccupationWorkAvailability
     {
         public OccupationWorkAvailability():this(0)

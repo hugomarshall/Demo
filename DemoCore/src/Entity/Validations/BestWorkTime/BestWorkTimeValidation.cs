@@ -1,7 +1,5 @@
 ﻿using DemoCore.Domain.Commands;
 using FluentValidation;
-using static DemoCore.Domain.Core.Enums.EntityStateEnum;
-using static DemoCore.Domain.Validations.PropertyValidatorExtension;
 
 namespace DemoCore.Domain.Validations
 {
@@ -9,9 +7,13 @@ namespace DemoCore.Domain.Validations
     {
         protected void ValidateBestWorkTime()
         {
-            RuleFor(x => x.DescriptionEN).NotEmpty().WithMessage("Description in english is required.");
-            RuleFor(x => x.DescriptionPT).NotEmpty().WithMessage("Description in portuguese is required.");
+            RuleFor(x => x.DescriptionEN).NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.DescriptionPT).NotEmpty().WithMessage("{PropertyName} is required.");
         }
 
+        protected void ValidateRemove()
+        {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("{PropertyName} is required.");
+        }
     }
 }

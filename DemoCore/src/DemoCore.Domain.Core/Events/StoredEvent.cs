@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Core.Events
 {
+    [Table("StoredEvent", Schema = "EventStore")]
     public class StoredEvent : Event
     {
         public StoredEvent(Event theEvent, string data, string user)

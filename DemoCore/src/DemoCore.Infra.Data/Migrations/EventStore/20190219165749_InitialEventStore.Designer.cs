@@ -10,14 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoCore.Infra.Data.Migrations.EventStore
 {
     [DbContext(typeof(EventStoreContext))]
-    [Migration("20190214214933_EventSourcing")]
-    partial class EventSourcing
+    [Migration("20190219165749_InitialEventStore")]
+    partial class InitialEventStore
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasDefaultSchema("EventStore")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -41,7 +42,7 @@ namespace DemoCore.Infra.Data.Migrations.EventStore
 
                     b.HasKey("Id");
 
-                    b.ToTable("StoredEvent");
+                    b.ToTable("StoredEvent","EventStore");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,14 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoCore.Infra.Data.Migrations
 {
     [DbContext(typeof(DemoCoreContext))]
-    [Migration("20190214214625_Initial")]
+    [Migration("20190219165436_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasDefaultSchema("DemoCoreData")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -56,7 +57,7 @@ namespace DemoCore.Infra.Data.Migrations
                     b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", true);
 
-                    b.ToTable("BestWorkTime");
+                    b.ToTable("BestWorkTime","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.Designer", b =>
@@ -94,7 +95,7 @@ namespace DemoCore.Infra.Data.Migrations
                     b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", true);
 
-                    b.ToTable("Designer");
+                    b.ToTable("Designer","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.Developer", b =>
@@ -132,7 +133,7 @@ namespace DemoCore.Infra.Data.Migrations
                     b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", true);
 
-                    b.ToTable("Developer");
+                    b.ToTable("Developer","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.Knowledge", b =>
@@ -171,7 +172,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasAlternateKey("PeopleId");
 
-                    b.ToTable("Knowledge");
+                    b.ToTable("Knowledge","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDesigner", b =>
@@ -192,7 +193,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasIndex("KnowledgeId");
 
-                    b.ToTable("KnowledgeDesigner");
+                    b.ToTable("KnowledgeDesigner","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDeveloper", b =>
@@ -213,7 +214,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasIndex("KnowledgeId");
 
-                    b.ToTable("KnowledgeDeveloper");
+                    b.ToTable("KnowledgeDeveloper","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.Occupation", b =>
@@ -239,7 +240,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasAlternateKey("PeopleId");
 
-                    b.ToTable("Occupation");
+                    b.ToTable("Occupation","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationBestWorkTime", b =>
@@ -258,7 +259,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasIndex("OccupationId");
 
-                    b.ToTable("OccupationBestWorkTime");
+                    b.ToTable("OccupationBestWorkTime","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationWorkAvailability", b =>
@@ -277,7 +278,7 @@ namespace DemoCore.Infra.Data.Migrations
 
                     b.HasIndex("WorkAvailabilityId");
 
-                    b.ToTable("OccupationWorkAvailability");
+                    b.ToTable("OccupationWorkAvailability","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.People", b =>
@@ -356,7 +357,7 @@ namespace DemoCore.Infra.Data.Migrations
                     b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", true);
 
-                    b.ToTable("People");
+                    b.ToTable("People","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.WorkAvailability", b =>
@@ -394,7 +395,7 @@ namespace DemoCore.Infra.Data.Migrations
                     b.HasKey("Id")
                         .HasAnnotation("SqlServer:Clustered", true);
 
-                    b.ToTable("WorkAvailability");
+                    b.ToTable("WorkAvailability","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.Knowledge", b =>

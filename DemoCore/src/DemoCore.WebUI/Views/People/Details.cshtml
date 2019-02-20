@@ -1,0 +1,135 @@
+﻿@model DemoCore.Application.ViewModels.PeopleVM
+
+@{
+    ViewData["Title"] = "Developer Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="container">
+    <div class="row">
+        <hr />
+        <div class="col-lg-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Skype)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Skype)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-lg-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.LinkedIn)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LinkedIn)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Portfolio)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Portfolio)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-lg-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsDesigner)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsDesigner)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsDeveloper)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsDeveloper)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EntityState)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EntityState)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateCreated)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateLastUpdate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateLastUpdate)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Occupation)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Occupation)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-lg-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Knowledge)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Knowledge)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-info">Back to List</a>
+    </div>
+</div>

@@ -1,7 +1,9 @@
 ﻿using DemoCore.Domain.Core.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("WorkAvailability", Schema = "DemoCoreData")]
     public class WorkAvailability: Entity
     {
         public WorkAvailability(): this(0)

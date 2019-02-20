@@ -1,5 +1,4 @@
-﻿
-using DemoCore.Domain.Models;
+﻿using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.EntityConfigs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +28,7 @@ namespace DemoCore.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("DemoCoreData");
             modelBuilder.ApplyConfiguration(new BestWorkTimeConfiguration());
             modelBuilder.ApplyConfiguration(new DesignerConfiguration());
             modelBuilder.ApplyConfiguration(new DeveloperConfiguration());
@@ -37,7 +37,6 @@ namespace DemoCore.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new PeopleConfiguration());
             modelBuilder.ApplyConfiguration(new WorkAvailabilityConfiguration());
             
-
             base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -49,7 +48,10 @@ namespace DemoCore.Infra.Data.Context
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), options =>
+            {
+                options.MigrationsHistoryTable("__DemoCoreMigrationsHistory", "DemoCoreData");
+            });
         }
 
     }

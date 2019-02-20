@@ -5,51 +5,56 @@
     ViewData["Title"] = "Edit Designer";
 }
 
-<h2>@ViewData["Title"]</h2>
+<section class="bg-transparent text-body mb-auto mt-3">
+    <div class="container">
+        <h3>@ViewData["Title"]</h3>
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <hr />
+        <form asp-action="Edit">
+            <div class="form-horizontal">
+                <hr />
 
-        <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Id" />
 
-        @* Replacing classic Validation Summary to Custom ViewComponent as TagHelper *@
-        <vc:summary />
+                @* Replacing classic Validation Summary to Custom ViewComponent as TagHelper *@
+                <vc:summary />
 
-        <div class="form-group">
-            <label asp-for="DescriptionEN" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DescriptionEN" class="form-control" />
-                <span asp-validation-for="DescriptionEN" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="DescriptionEN" class="col-md-12 control-label"></label>
+                    <div class="col-md-12">
+                        <textarea rows="3" asp-for="DescriptionEN" class="form-control"></textarea>
+                        <span asp-validation-for="DescriptionEN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DescriptionPT" class="col-md-12 control-label"></label>
+                    <div class="col-md-12">
+                        <textarea rows="3" asp-for="DescriptionPT" class="form-control"></textarea>
+                        <span asp-validation-for="DescriptionPT" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EntityState" class="col-md-12 control-label"></label>
+                    <div class="col-md-12">
+                        <select asp-for="EntityState" asp-items="Html.GetEnumSelectList<EntityStateOptions>()" class="form-control">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                        <span asp-validation-for="EntityState" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-info">Back to List</a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="DescriptionPT" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DescriptionPT" class="form-control" />
-                <span asp-validation-for="DescriptionPT" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="EntityState" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="EntityState" asp-items="Html.GetEnumSelectList<EntityStateOptions>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="EntityState" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-info">Back to List</a>
-            </div>
-        </div>
+        </form>
     </div>
-</form>
+</section>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

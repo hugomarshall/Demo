@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DemoCore.Infra.Data.Migrations.EventStore
 {
-    public partial class EventSourcing : Migration
+    public partial class InitialEventStore : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "EventStore");
+
             migrationBuilder.CreateTable(
                 name: "StoredEvent",
+                schema: "EventStore",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -27,7 +31,8 @@ namespace DemoCore.Infra.Data.Migrations.EventStore
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "StoredEvent");
+                name: "StoredEvent",
+                schema: "EventStore");
         }
     }
 }

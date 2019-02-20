@@ -4,77 +4,76 @@
     ViewData["Title"] = "Developer Management";
 }
 
-<div>
-    <h2>@ViewData["Title"]</h2>
-</div>
-<hr />
-
-<div class="row">
-    <div class="col-md-12">
-        <div>
-            <div class="pull-left">
-                <a asp-action="Create" class="btn btn-primary">
-                    <span title="Register New" class="glyphicon glyphicon-plus-sign"></span> Register New
-                </a>
+<section class="bg-transparent text-body mb-auto mt-3">
+    <div class="container">
+        <div class="row">
+            <h3>@ViewData["Title"]</h3>
+            <div class="col-md-12">
+                <div>
+                    <div class="pull-right">
+                        <a asp-action="Create" class="btn btn-primary">
+                            <span title="Register New" class="fa fa-plus"></span> Register New
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        <br />
+        <div class="panel panel-default">
+            <table class="table table-striped table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DescriptionEN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DescriptionPT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EntityState)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescriptionEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescriptionPT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntityState)
+                            </td>
+                            <td class="">
+                                <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
+                                    <span class="fa fa-search"></span>
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                                    <span class="fa fa-trash"></span>
+                                </a>
+
+                                <button type="button" class="btn btn-secondary viewbutton" title="History" data-id="@item.Id" data-toggle="modal" data-target="#developerHistory">
+                                    <span class="fa fa-archive"></span>
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<br />
-
-<div class="panel panel-default">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescriptionEN)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescriptionPT)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EntityState)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DescriptionEN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DescriptionPT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EntityState)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
-                            <span class="fa fa-pencil"></span>
-                        </a>
-
-                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
-                            <span class="fa fa-search"></span>
-                        </a>
-
-                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
-                            <span class="fa fa-trash"></span>
-                        </a>
-
-                        <button type="button" class="btn btn-purple viewbutton" title="History" data-id="@item.Id" data-toggle="modal" data-target="#customerHistory">
-                            <span class="fa fa-time"></span>
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<div class="modal fade" id="customerHistory" role="dialog">
+</section>
+<div class="modal fade" id="developerHistory" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,10 +81,10 @@
                 <h4 class="modal-title">Developer Data History</h4>
             </div>
             <div class="modal-body">
-                <p id="customerHistoryData"></p>
+                <p id="historyData"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -116,7 +115,7 @@
                     formatHtml += "</tr>";
                 }
                 formatHtml += "</table>";
-                $("#customerHistoryData").html(formatHtml);
+                $("#historyData").html(formatHtml);
             });
         });
     </script>

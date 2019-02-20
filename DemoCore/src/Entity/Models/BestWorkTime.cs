@@ -1,8 +1,10 @@
 ﻿using DemoCore.Domain.Core.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("BestWorkTime", Schema = "DemoCoreData")]
     public class BestWorkTime: Entity
     {
         public BestWorkTime(): this(0)

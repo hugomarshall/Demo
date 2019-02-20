@@ -1,0 +1,47 @@
+﻿@model DemoCore.Application.ViewModels.DeveloperVM
+
+@{
+    ViewData["Title"] = "Register new Developer";
+}
+
+<section class="bg-transparent text-body mb-auto mt-3">
+    <div class="container">
+        <h3>@ViewData["Title"]</h3>
+        <form asp-action="Create">
+            <div class="form-horizontal">
+                <hr />
+
+                @* Replacing classic Validation Summary to Custom ViewComponent as TagHelper *@
+                <vc:summary />
+
+                <div class="form-group">
+                    <label asp-for="DescriptionEN" class="col-md-12 control-label"></label>
+                    <div class="col-md-12">
+                        <textarea rows="3" asp-for="DescriptionEN" class="form-control"></textarea>
+                        <span asp-validation-for="DescriptionEN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DescriptionPT" class="col-md-12 control-label"></label>
+                    <div class="col-md-12">
+                        <textarea rows="3" asp-for="DescriptionPT" class="form-control"></textarea>
+                        <span asp-validation-for="DescriptionPT" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-info">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -6,7 +6,7 @@ namespace DemoCore.Domain.Validations
     {
         public RemoveWorkAvailabilityCommandValidation()
         {
-            //TODO Validate Remove!
+            ValidateRemove();
         }
     }
 }

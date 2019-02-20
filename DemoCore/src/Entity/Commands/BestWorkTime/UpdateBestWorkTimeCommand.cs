@@ -6,11 +6,12 @@ namespace DemoCore.Domain.Commands
 {
     public class UpdateBestWorkTimeCommand : BestWorkTimeCommand
     {
-        public UpdateBestWorkTimeCommand(int id, string descriptionPT, string descriptionEN)
+        public UpdateBestWorkTimeCommand(int id, string descriptionPT, string descriptionEN, EntityStateOptions entityState)
         {
             Id = id;
             DescriptionEN = descriptionEN;
             DescriptionPT = descriptionPT;
+            EntityState = entityState;
         }
 
         public override bool IsValid()

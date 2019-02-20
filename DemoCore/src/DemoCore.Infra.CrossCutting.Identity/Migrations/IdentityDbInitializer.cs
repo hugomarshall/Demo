@@ -29,6 +29,11 @@ namespace DemoCore.Infra.CrossCutting.Identity.Migrations
         {
             var lstRoles = userService.GetAdminMasterRoles().ToList();
 
+            if (!context.Roles.Any())
+            {
+                userService.CreateRoles(lstRoles).Wait();
+            }
+
             if (!context.Users.Any())
             {
                 var lstClaims = userService.GetAdminMasterClaims().ToList();
@@ -43,10 +48,7 @@ namespace DemoCore.Infra.CrossCutting.Identity.Migrations
                 userService.CreateUser(user, "@Sharpnet01", lstClaims, lstRoles).Wait();
             }
 
-            if (!context.Roles.Any())
-            {
-                userService.CreateRoles(lstRoles).Wait();
-            }
+            
 
         }
     }

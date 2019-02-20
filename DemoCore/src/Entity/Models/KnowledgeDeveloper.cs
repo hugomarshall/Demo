@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("KnowledgeDeveloper", Schema = "DemoCoreData")]
     public class KnowledgeDeveloper
     {
         public KnowledgeDeveloper(): this(0)

@@ -36,6 +36,11 @@ namespace DemoCore.Application.Services
             return peopleRepository.GetAll().ProjectTo<PeopleVM>(mapper.ConfigurationProvider);
         }
 
+        public PeopleVM GetByEmail(string email)
+        {
+            return mapper.Map<PeopleVM>(peopleRepository.GetByEmail(email));
+        }
+
         public PeopleVM GetById(int id)
         {
             return mapper.Map<PeopleVM>(peopleRepository.GetById(id));

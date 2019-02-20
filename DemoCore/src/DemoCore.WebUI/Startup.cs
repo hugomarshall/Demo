@@ -1,7 +1,11 @@
 ﻿using DemoCore.Infra.CrossCutting.Identity.Authorization;
 using DemoCore.Infra.CrossCutting.Identity.Data;
+using DemoCore.Infra.CrossCutting.Identity.Extensions;
+using DemoCore.Infra.CrossCutting.Identity.Migrations;
 using DemoCore.Infra.CrossCutting.Identity.Models;
 using DemoCore.Infra.CrossCutting.IoC;
+using DemoCore.Infra.Data.Context;
+using DemoCore.Infra.Data.Migrations;
 using DemoCore.WebUI.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -28,8 +32,19 @@ namespace DemoCore.WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DemoCoreContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions =>
+            {
+                sqlServerOptions.MigrationsAssembly("DemoCore.Infra.Data.Context");
+            }));
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions =>
+            {
+                sqlServerOptions.MigrationsAssembly("DemoCore.Infra.CrossCutting.Identity");
+            }));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -61,28 +76,7 @@ namespace DemoCore.WebUI
             services.AddAutoMapperSetup();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("CanReadPeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Read")));
-                options.AddPolicy("CanWritePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Write")));
-                options.AddPolicy("CanRemovePeopleData", policy => policy.Requirements.Add(new ClaimRequirement("People", "Delete")));
-
-                options.AddPolicy("CanReadBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Read")));
-                options.AddPolicy("CanWriteBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Write")));
-                options.AddPolicy("CanRemoveBestWorkTimeData", policy => policy.Requirements.Add(new ClaimRequirement("BestWorkTime", "Delete")));
-
-                options.AddPolicy("CanReadDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Read")));
-                options.AddPolicy("CanWriteDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Write")));
-                options.AddPolicy("CanRemoveDesignerData", policy => policy.Requirements.Add(new ClaimRequirement("Designer", "Delete")));
-
-                options.AddPolicy("CanReadDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Read")));
-                options.AddPolicy("CanWriteDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Write")));
-                options.AddPolicy("CanRemoveDeveloperData", policy => policy.Requirements.Add(new ClaimRequirement("Developer", "Delete")));
-
-                options.AddPolicy("CanReadWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Read")));
-                options.AddPolicy("CanWriteWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Write")));
-                options.AddPolicy("CanRemoveWorkAvailabilityData", policy => policy.Requirements.Add(new ClaimRequirement("WorkAvailability", "Delete")));
-            });
+            services.AddPoliciesSetup();
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
@@ -92,7 +86,7 @@ namespace DemoCore.WebUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DemoCoreContext context, ApplicationDbContext identityContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -118,6 +112,9 @@ namespace DemoCore.WebUI
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            new DemoCoreDbInitializer(context).Seed().Wait();
+            new IdentityDbInitializer(identityContext, userManager, roleManager).Seed();
         }
 
         private static void RegisterServices(IServiceCollection services)

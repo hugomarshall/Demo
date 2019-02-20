@@ -6,7 +6,7 @@ namespace DemoCore.Domain.Validations
     {
         public RemoveDeveloperCommandValidation()
         {
-            //TODO Remove Validation
+            ValidateRemove();
         }
     }
 }

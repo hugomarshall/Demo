@@ -11,7 +11,7 @@ namespace DemoCore.Application.AutoMapper
             CreateMap<BestWorkTimeVM, RegisterNewBestWorkTimeCommand>()
                 .ConstructUsing(c => new RegisterNewBestWorkTimeCommand(c.DescriptionPT, c.DescriptionEN)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
             CreateMap<BestWorkTimeVM, UpdateBestWorkTimeCommand>()
-                .ConstructUsing(c => new UpdateBestWorkTimeCommand(c.Id, c.DescriptionPT, c.DescriptionEN)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
+                .ConstructUsing(c => new UpdateBestWorkTimeCommand(c.Id, c.DescriptionPT, c.DescriptionEN, c.EntityState)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
             CreateMap<DesignerVM, RegisterNewDesignerCommand>()
                 .ConstructUsing(c => new RegisterNewDesignerCommand(c.DescriptionPT, c.DescriptionEN, c.EntityState)).IgnoreAllPropertiesWithAnInaccessibleSetter().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
             CreateMap<DesignerVM, UpdateDesignerCommand>()

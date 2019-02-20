@@ -63,14 +63,19 @@ namespace DemoCore.Domain.CommandHandlers
                 return Task.FromResult(false);
             }
 
-            var model = new BestWorkTime(request.Id)
+            var model = bwtRepository.GetById(request.Id);
+            if(model == null)
             {
-                DescriptionEN = request.DescriptionEN,
-                DescriptionPT = request.DescriptionPT,
-                EntityState = EntityStateOptions.Active,
-                DateLastUpdate = DateTime.UtcNow,
-                HasChanges = true
-            };
+                bus.RaiseEvent(new DomainNotification(request.MessageType, "This BestWorkTime not found."));
+                return Task.FromResult(false);
+            }
+
+            model.DescriptionEN = request.DescriptionEN;
+            model.DescriptionPT = request.DescriptionPT;
+            model.EntityState = request.EntityState;
+            model.DateLastUpdate = DateTime.UtcNow;
+            model.HasChanges = true;
+            
             bwtRepository.Update(model);
 
             if (Commit())

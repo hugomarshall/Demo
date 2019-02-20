@@ -1,8 +1,10 @@
 ﻿using DemoCore.Domain.Core.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("Developer", Schema = "DemoCoreData")]
     public class Developer: Entity
     {
         public Developer(): this(0)

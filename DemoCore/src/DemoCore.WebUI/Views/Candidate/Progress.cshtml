@@ -1,0 +1,90 @@
+﻿@model DemoCore.Application.ViewModels.PeopleVM
+@{
+    ViewData["Title"] = "Candidate Progress";
+    var occupation = Model.Occupation != null;
+    var knowlege = Model.Knowledge != null;
+    var progressValue = 0;
+    var workTime = false;
+    var availability = false;
+    var developer = false;
+    var design = false;
+
+    if (occupation)
+    {
+        workTime = Model.Occupation.BestWorkTimes != null;
+        availability = Model.Occupation.WorkAvailabilities != null;
+        if(workTime) { progressValue += 25; }
+        if(availability) { progressValue += 25; }
+    }
+    if (knowlege)
+    {
+        developer = Model.Knowledge.KnowledgeDeveloper != null;
+        design = Model.Knowledge.KnowledgeDesigner != null;
+        if(!developer) { progressValue += 25; }
+        if(design) { progressValue += 25; }
+    }
+    
+}
+
+<section class="bg-transparent text-body mb-auto mt-3">
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <hr />
+        @workTime
+        @availability
+        Developer: @developer
+        @design
+        @progressValue
+        <div class="row">
+            <div class="col">
+                Hello @Model.Name <br />
+
+                Your Actual Progress: <br />
+                
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@(progressValue)" aria-valuemin="0" aria-valuemax="100" style="width: @(progressValue)%"></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="input-group mb-3 col-md-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="" @(occupation && workTime ? "checked='checked'" : string.Empty) disabled>
+                            </div>
+                        </div>
+
+                        <input type="button" class="form-control btn btn-warning" aria-label="" value="Work Time">
+                    </div>
+                    <div class="input-group mb-3 col-md-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="" @(occupation && availability ? "checked='checked'" : string.Empty) disabled/>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="" disabled value="Availability">
+                    </div>
+                    <div class="input-group mb-3 col-md-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="" @(occupation && developer == true ? "checked='checked'" : string.Empty) disabled />
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="" disabled value="Developer">
+                    </div>
+                    <div class="input-group mb-3 col-md-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="" @(occupation == false && design ? "checked='checked'" : string.Empty) disabled>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="" disabled value="Design">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+

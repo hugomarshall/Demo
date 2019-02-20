@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("OccupationBestWorkTime", Schema = "DemoCoreData")]
     public class OccupationBestWorkTime
     {
         public OccupationBestWorkTime():this(0)

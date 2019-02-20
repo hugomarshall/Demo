@@ -1,7 +1,9 @@
 ﻿using DemoCore.Domain.Core.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
 {
+    [Table("People", Schema = "DemoCoreData")]
     public class People: Entity
     {
         public People(int id)

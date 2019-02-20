@@ -16,6 +16,12 @@ namespace DemoCore.Infra.CrossCutting.Identity.Data
             this.env = env;
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.HasDefaultSchema("Identity");
+            base.OnModelCreating(builder);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // get the configuration from the app settings
@@ -25,7 +31,9 @@ namespace DemoCore.Infra.CrossCutting.Identity.Data
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), options => {
+                options.MigrationsHistoryTable("__IdentityMigrationsHistory", "Identity");
+            });
         }
     }
 }

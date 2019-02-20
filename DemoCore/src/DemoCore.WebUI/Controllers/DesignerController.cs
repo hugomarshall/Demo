@@ -64,7 +64,7 @@ namespace DemoCore.WebUI.Controllers
             designerService.Register(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Registered!";
+                ViewBag.Sucesso = "Designer Registered!";
 
             return View(request);
         }
@@ -91,7 +91,7 @@ namespace DemoCore.WebUI.Controllers
 
         [HttpPost]
         [Authorize(Policy = "CanWriteDesignerData")]
-        [Route("designer-management/edit-designer/{id:guid}")]
+        [Route("designer-management/edit-designer/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(DesignerVM request)
         {
@@ -100,7 +100,7 @@ namespace DemoCore.WebUI.Controllers
             designerService.Update(request);
 
             if (IsValidOperation())
-                ViewBag.Sucesso = "Best Work Time Updated!";
+                ViewBag.Sucesso = "Designer Updated!";
 
             return View(request);
         }
@@ -135,7 +135,7 @@ namespace DemoCore.WebUI.Controllers
 
             if (!IsValidOperation()) return View(designerService.GetById(id));
 
-            ViewBag.Sucesso = "Best Work Time Removed!";
+            ViewBag.Sucesso = "Designer Removed!";
             return RedirectToAction("Index");
         }
 
