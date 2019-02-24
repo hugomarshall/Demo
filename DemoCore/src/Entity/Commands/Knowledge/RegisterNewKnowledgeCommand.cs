@@ -8,18 +8,17 @@ namespace DemoCore.Domain.Commands
 {
     public class RegisterNewKnowledgeCommand: KnowledgeCommand
     {
-        public RegisterNewKnowledgeCommand(People people, List<KnowledgeDesigner> knowledgeDesigner, List<KnowledgeDeveloper> knowledgeDeveloper, string other, string urlLink) 
+        public RegisterNewKnowledgeCommand(int peopleId, List<KnowledgeDesigner> knowledgeDesigner, List<KnowledgeDeveloper> knowledgeDeveloper, string other, string urlLink) 
         {
             Id = 0;
-            People = people;
-            PeopleId = people.Id;
+            PeopleId = peopleId;
             KnowledgeDesigner = knowledgeDesigner;
             KnowledgeDeveloper = knowledgeDeveloper;
             Other = other;
             UrlLinkCRUD = urlLink;
             EntityState = EntityStateOptions.Active;
             DateCreated = DateTime.UtcNow;
-            DateLastUpdate = null;
+            DateLastUpdate = DateTime.UtcNow;
             IsNew = true;
             HasChanges = false;
         }

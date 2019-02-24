@@ -12,6 +12,7 @@ namespace DemoCore.Application.Interfaces
         WorkAvailabilityVM GetById(int id);
         void Update(WorkAvailabilityVM request);
         void Remove(int id);
+        IEnumerable<SelectedItems> GetSelectedWorkAvailability();
         //IList<CustomerHistoryData> GetAllHistory(Guid id);
     }
 }

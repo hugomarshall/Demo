@@ -8,33 +8,30 @@
     var availability = false;
     var developer = false;
     var design = false;
+    var isDev = Model.IsDeveloper;
+    var isDes = Model.IsDesigner;
 
     if (occupation)
     {
-        workTime = Model.Occupation.BestWorkTimes != null;
-        availability = Model.Occupation.WorkAvailabilities != null;
-        if(workTime) { progressValue += 25; }
-        if(availability) { progressValue += 25; }
+        workTime = Model.Occupation.BestWorkTimes.Count > 0;
+        availability = Model.Occupation.WorkAvailabilities.Count > 0;
+        if (workTime) { progressValue += 25; }
+        if (availability) { progressValue += 25; }
     }
     if (knowlege)
     {
-        developer = Model.Knowledge.KnowledgeDeveloper != null;
-        design = Model.Knowledge.KnowledgeDesigner != null;
-        if(!developer) { progressValue += 25; }
-        if(design) { progressValue += 25; }
+        developer = Model.Knowledge.KnowledgeDeveloper.Count > 0;
+        design = Model.Knowledge.KnowledgeDesigner.Count > 0;
+        if (!developer) { progressValue += 25; }
+        if (design) { progressValue += 25; }
     }
-    
+
 }
 
 <section class="bg-transparent text-body mb-auto mt-3">
     <div class="container">
         <h2>@ViewData["Title"]</h2>
         <hr />
-        @workTime
-        @availability
-        Developer: @developer
-        @design
-        @progressValue
         <div class="row">
             <div class="col">
                 Hello @Model.Name <br />
@@ -46,38 +43,31 @@
                 </div>
                 <br />
                 <div class="row">
-                    <div class="input-group mb-3 col-md-3">
+                    <div class="input-group mb-3 col-md-3 offset-1">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" aria-label="" @(occupation && workTime ? "checked='checked'" : string.Empty) disabled>
+                                <input type="checkbox" aria-label="" checked="checked") disabled>
                             </div>
                         </div>
 
-                        <input type="button" class="form-control btn btn-warning" aria-label="" value="Work Time">
+                        <a class="form-control btn btn-success" aria-label="" value="Personal" asp-controller="People" asp-action="Edit" asp-route-id="@Model.Id">Personal</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" aria-label="" @(occupation && availability ? "checked='checked'" : string.Empty) disabled/>
+                                <input type="checkbox" aria-label="" @(occupation && (workTime || availability) ? "checked='checked'" : string.Empty) disabled>
                             </div>
                         </div>
-                        <input type="text" class="form-control" aria-label="" disabled value="Availability">
+
+                        <a class="form-control btn @(occupation && (workTime || availability) ? "btn-success" : "btn-primary")" aria-label="" asp-controller="Candidate" asp-action="OccupationAsync">Occupation</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" aria-label="" @(occupation && developer == true ? "checked='checked'" : string.Empty) disabled />
+                                <input type="checkbox" aria-label="" @((isDev && developer) && (isDes && design) == true ? "checked='checked'" : string.Empty) disabled />
                             </div>
                         </div>
-                        <input type="text" class="form-control" aria-label="" disabled value="Developer">
-                    </div>
-                    <div class="input-group mb-3 col-md-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" aria-label="" @(occupation == false && design ? "checked='checked'" : string.Empty) disabled>
-                            </div>
-                        </div>
-                        <input type="text" class="form-control" aria-label="" disabled value="Design">
+                        <a class="form-control btn @((isDev && developer) && (isDes && design) ? "btn-success" : "btn-info")" aria-label="" asp-controller="Candidate" asp-action="KnowledgeAsync">Knowledge</a>
                     </div>
                 </div>
             </div>

@@ -6,10 +6,18 @@ namespace DemoCore.Application.ViewModels
 {
     public class OccupationWorkAvailabilityVM
     {
-        public int Id { get; private set; }
+        public OccupationWorkAvailabilityVM()
+        {
+            //Occupation = new OccupationVM();
+            //WorkAvailability = new WorkAvailabilityVM();
+            //PageContent = new List<SelectedItems>();
+        }
+
         public int OccupationId { get; set; }
-        public OccupationVM Occupation { get; set; }
+        public virtual OccupationVM Occupation { get; set; }
         public int WorkAvailabilityId { get; set; }
-        public WorkAvailabilityVM WorkAvailability { get; set; }
+        public virtual WorkAvailabilityVM WorkAvailability { get; set; }
+
+        public IList<SelectedItems> PageContent { get; set; }
     }
 }

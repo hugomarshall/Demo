@@ -5,9 +5,11 @@ using DemoCore.Application.ViewModels;
 using DemoCore.Domain.Commands;
 using DemoCore.Domain.Core.Bus;
 using DemoCore.Domain.Interfaces;
+using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.Repositories.EventSourcing;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DemoCore.Application.Services
 {
@@ -36,9 +38,19 @@ namespace DemoCore.Application.Services
             return peopleRepository.GetAll().ProjectTo<PeopleVM>(mapper.ConfigurationProvider);
         }
 
-        public PeopleVM GetByEmail(string email)
+        public async Task<PeopleVM> GetByEmailAsync(string email)
         {
-            return mapper.Map<PeopleVM>(peopleRepository.GetByEmail(email));
+            try
+            {
+                var people = await peopleRepository.GetByEmail(email);
+                var model = mapper.Map<PeopleVM>(people);
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw(ex);
+            }
+            
         }
 
         public PeopleVM GetById(int id)
@@ -60,7 +72,8 @@ namespace DemoCore.Application.Services
 
         public void Update(PeopleVM peopleVM)
         {
-            var updateCommand = mapper.Map<UpdatePeopleCommand>(peopleVM);
+            var model = mapper.Map<People>(peopleVM);
+            var updateCommand = mapper.Map<UpdatePeopleCommand>(model);
             bus.SendCommand(updateCommand);
         }
     }

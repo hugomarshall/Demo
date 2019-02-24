@@ -1,7 +1,6 @@
 ﻿using DemoCore.Application.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DemoCore.Application.Interfaces
 {
@@ -12,6 +11,7 @@ namespace DemoCore.Application.Interfaces
         BestWorkTimeVM GetById(int id);
         void Update(BestWorkTimeVM bestWorkVM);
         void Remove(int id);
+        IEnumerable<SelectedItems> GetSelectedBestWorkTime();
         //IList<CustomerHistoryData> GetAllHistory(Guid id);
     }
 }

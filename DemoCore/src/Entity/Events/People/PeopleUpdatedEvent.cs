@@ -9,7 +9,7 @@ namespace DemoCore.Domain.Events
 {
     public class PeopleUpdatedEvent: Event
     {
-        public PeopleUpdatedEvent(int id, string name, string email, string skype, string celular, string linkedIn, string cidade, string estado, string portfolio, bool isDeveloper, bool isDesigner, int occupationId, Occupation occupation, int knowledgeId, Knowledge knowledge)
+        public PeopleUpdatedEvent(int id, string name, string email, string skype, string celular, string linkedIn, string cidade, string estado, string portfolio, bool isDeveloper, bool isDesigner, int? occupationId = null,  int? knowledgeId = null)
         {
             Id = id;
             Name = name;
@@ -20,10 +20,8 @@ namespace DemoCore.Domain.Events
             Cidade = cidade;
             Estado = estado;
             Portfolio = portfolio;
-            OccupationId = occupationId;
-            Occupation = occupation;
-            KnowledgeId = knowledgeId;
-            Knowledge = knowledge;
+            OccupationId = occupationId ?? null;
+            KnowledgeId = knowledgeId ?? null;
             DateLastUpdate = DateTime.Now;
             EntityState = EntityStateOptions.Active;
             HasChanges = true;
@@ -41,11 +39,8 @@ namespace DemoCore.Domain.Events
         public string Portfolio { get; set; }
         public bool IsDeveloper { get; set; }
         public bool IsDesigner { get; set; }
-        public int OccupationId { get; set; }
-        public Occupation Occupation { get; set; }
-        public int KnowledgeId { get; set; }
-        public Knowledge Knowledge { get; set; }
-
+        public int? OccupationId { get; set; }
+        public int? KnowledgeId { get; set; }
         public DateTime? DateLastUpdate { get; set; }
         public EntityStateOptions EntityState { get; set; }
         public bool HasChanges { get; set; }

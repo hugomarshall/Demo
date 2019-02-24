@@ -6,11 +6,14 @@ namespace DemoCore.Application.AutoMapper
     {
         public static MapperConfiguration RegisterMappings()
         {
-            return new MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new DomainToViewModelMappingProfile());
                 cfg.AddProfile(new ViewModelToDomainMappingProfile());
             });
+
+            config.AssertConfigurationIsValid();
+            return config;
         }
     }
 }

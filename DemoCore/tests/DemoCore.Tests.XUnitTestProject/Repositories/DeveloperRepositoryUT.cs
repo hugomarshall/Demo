@@ -60,8 +60,6 @@ namespace DemoCore.Tests.XUnitTestProject.Repositories
                 DescriptionEN = "UnitTestEN",
                 DescriptionPT = "UnitTestPT",
                 EntityState = Domain.Core.Enums.EntityStateEnum.EntityStateOptions.Active,
-                DateCreated = DateTime.Now,
-                DateLastUpdate = null
             };
 
             //Act

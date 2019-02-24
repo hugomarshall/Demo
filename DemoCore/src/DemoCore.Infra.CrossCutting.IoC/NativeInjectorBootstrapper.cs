@@ -45,6 +45,8 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddScoped<IDeveloperService, DeveloperService>();
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IWorkAvailabilityService, WorkAvailabilityService>();
+            services.AddScoped<IOccupationService, OccupationService>();
+            services.AddScoped<IKnowledgeService, KnowledgeService>();
             
 
             // Domain - Events
@@ -52,6 +54,26 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<PeopleRegisteredEvent>, PeopleEventHandler>();
             services.AddScoped<INotificationHandler<PeopleUpdatedEvent>, PeopleEventHandler>();
             services.AddScoped<INotificationHandler<PeopleRemovedEvent>, PeopleEventHandler>();
+
+            services.AddScoped<INotificationHandler<OccupationRegisteredEvent>, OccupationHandler>();
+            services.AddScoped<INotificationHandler<OccupationUpdatedEvent>, OccupationHandler>();
+            services.AddScoped<INotificationHandler<OccupationRemovedEvent>, OccupationHandler>();
+
+            services.AddScoped<INotificationHandler<BestWorkTimeRegisteredEvent>, BestWorkTimeHandler>();
+            services.AddScoped<INotificationHandler<BestWorkTimeUpdatedEvent>, BestWorkTimeHandler>();
+            services.AddScoped<INotificationHandler<BestWorkTimeRemovedEvent>, BestWorkTimeHandler>();
+
+            services.AddScoped<INotificationHandler<WorkAvailabilityRegisteredEvent>, WorkAvailabilityHandler>();
+            services.AddScoped<INotificationHandler<WorkAvailabilityUpdatedEvent>, WorkAvailabilityHandler>();
+            services.AddScoped<INotificationHandler<WorkAvailabilityRemovedEvent>, WorkAvailabilityHandler>();
+
+            services.AddScoped<INotificationHandler<DeveloperRegisteredEvent>, DeveloperHandler>();
+            services.AddScoped<INotificationHandler<DeveloperUpdatedEvent>, DeveloperHandler>();
+            services.AddScoped<INotificationHandler<DeveloperRemovedEvent>, DeveloperHandler>();
+
+            services.AddScoped<INotificationHandler<DesignerRegisteredEvent>, DesignerHandler>();
+            services.AddScoped<INotificationHandler<DesignerUpdatedEvent>, DesignerHandler>();
+            services.AddScoped<INotificationHandler<DesignerRemovedEvent>, DesignerHandler>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewPeopleCommand, bool>, PeopleCommandHandler>();
@@ -74,6 +96,11 @@ namespace DemoCore.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<UpdateWorkAvailabilityCommand, bool>, WorkAvailabilityCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveWorkAvailabilityCommand, bool>, WorkAvailabilityCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewOccupationCommand, bool>, OccupationCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateOccupationCommand, bool>, OccupationCommandHandler>();
+
+            services.AddScoped<IRequestHandler<RegisterNewKnowledgeCommand, bool>, KnowledgeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateKnowledgeCommand, bool>, KnowledgeCommandHandler>();
 
             // Infra - Data
             services.AddScoped<IBestWorkTimeRepository, BestWorkTimeRepository>();

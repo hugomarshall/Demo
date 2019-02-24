@@ -1,0 +1,35 @@
+﻿@model ICollection<SelectedItems>
+@using DemoCore.Application.ViewModels
+
+@*<ul class="list-group" asp-for="@Model">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label asp-for="@item.DescriptionPT">@item.DescriptionPT</label>
+            <span class="">
+                <input type="checkbox" class="custom-checkbox" asp-for="@item.Assigned" />
+            </span>
+        </li>
+    }
+</ul>*@
+
+<table class="table table-responsive">
+    <tr>
+        @{
+            int cnt = 0;
+            foreach (var item in Model)
+            {
+                if (cnt++ % 1 == 0)
+                {
+                @:</tr><tr>
+                }
+                @:<td>
+                    <input type="checkbox" class="custom-checkbox"
+                           value="@item.Id" name="@item.NameComponent"
+                           @(Html.Raw(item.Assigned ? "checked=\"checked\"" : "")) />
+                    @item.DescriptionPT
+                @:</td>
+            }
+        @:</tr>
+        }
+</table>

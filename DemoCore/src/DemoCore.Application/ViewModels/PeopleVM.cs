@@ -6,6 +6,12 @@ namespace DemoCore.Application.ViewModels
 {
     public class PeopleVM
     {
+        public PeopleVM()
+        {
+            //if(Occupation == null) Occupation = new OccupationVM();
+            //if (Knowledge == null) Knowledge = new KnowledgeVM();
+            
+        }
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")]
@@ -60,5 +66,10 @@ namespace DemoCore.Application.ViewModels
         public DateTime DateCreated { get; set; }
         [Display(Name = "Date of Last Update")]
         public DateTime? DateLastUpdate { get; set; }
+        
     }
+
+    
+
+
 }

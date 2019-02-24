@@ -8,6 +8,7 @@ using DemoCore.Domain.Interfaces;
 using DemoCore.Infra.Data.Repositories.EventSourcing;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DemoCore.Application.Services
 {
@@ -40,6 +41,25 @@ namespace DemoCore.Application.Services
         public WorkAvailabilityVM GetById(int id)
         {
             return mapper.Map<WorkAvailabilityVM>(waRepository.GetById(id));
+        }
+
+        public IEnumerable<SelectedItems> GetSelectedWorkAvailability()
+        {
+            var wa = waRepository.GetAll().ProjectTo<WorkAvailabilityVM>(mapper.ConfigurationProvider);
+            var response = new Collection<SelectedItems>();
+            foreach (var item in wa)
+            {
+                response.Add(
+                    new SelectedItems
+                    {
+                        Id = item.Id,
+                        DescriptionEN = item.DescriptionEN,
+                        DescriptionPT = item.DescriptionPT,
+                        Assigned = false,
+                    }
+                );
+            }
+            return response;
         }
 
         public void Register(WorkAvailabilityVM request)

@@ -29,6 +29,18 @@ namespace DemoCore.Infra.Data.Repositories
             return query;
         }
 
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeExpressions)
+        {
+            if (includeExpressions.Any())
+            {
+                var set = includeExpressions
+                  .Aggregate<Expression<Func<TEntity, object>>, IQueryable<TEntity>>
+                    (DbSet, (current, expression) => current.Include(expression));
+                return set.Where(predicate);
+            }
+            return Get(predicate);
+        }
+
         public virtual TEntity GetById(int id)
         {
             return DbSet.Find(id);
@@ -44,9 +56,9 @@ namespace DemoCore.Infra.Data.Repositories
             DbSet.Update(obj);
         }
 
-        public virtual void Remove(int id)
+        public virtual void Remove(TEntity obj)
         {
-            DbSet.Remove(DbSet.Find(id));
+            DbSet.Remove(DbSet.Find(obj));
         }
 
         public int SaveChanges()

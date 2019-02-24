@@ -54,64 +54,48 @@ namespace DemoCore.Infra.Data.Migrations
         {
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Photoshop",
                 DescriptionEN = "Photoshop"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Illustration",
                 DescriptionEN = "Illustration"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "IOS",
                 DescriptionEN = "IOS"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "InDesign",
                 DescriptionEN = "InDesign"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Criação de marcas",
                 DescriptionEN = "Brand Creation"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Mockups",
                 DescriptionEN = "Mockups"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Marketing Social",
                 DescriptionEN = "Social Marketing"
             },
             new Designer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Web Design",
                 DescriptionEN = "Web Design"
@@ -122,256 +106,192 @@ namespace DemoCore.Infra.Data.Migrations
         {
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Ionic",
                 DescriptionEN = "Ionic"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "ReactJS",
                 DescriptionEN = "ReactJS"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "React Native",
                 DescriptionEN = "React Native"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Android",
                 DescriptionEN = "Android"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "IOS",
                 DescriptionEN = "IOS"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "HTML",
                 DescriptionEN = "HTML"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "CSS",
                 DescriptionEN = "CSS"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Bootstrap",
                 DescriptionEN = "Bootstrap"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "JQuery",
                 DescriptionEN = "JQuery"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "AngularJs",
                 DescriptionEN = "AngularJs"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Angular",
                 DescriptionEN = "Angular"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "JAVA",
                 DescriptionEN = "JAVA"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Asp.Net MVC",
                 DescriptionEN = "Asp.Net MVC"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Asp.Net WebForm",
                 DescriptionEN = "Asp.Net WebForm"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "C",
                 DescriptionEN = "C"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "C#",
                 DescriptionEN = "C#"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "NodeJS",
                 DescriptionEN = "NodeJS"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Cake",
                 DescriptionEN = "Cake"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Django",
                 DescriptionEN = "Django"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Majento",
                 DescriptionEN = "Majento"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "PHP",
                 DescriptionEN = "PHP"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Vue",
                 DescriptionEN = "Vue"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Wordpress",
                 DescriptionEN = "Wordpress"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Phyton",
                 DescriptionEN = "Phyton"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Ruby",
                 DescriptionEN = "Ruby"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "My SQL Server",
                 DescriptionEN = "My SQL Server"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "My SQL",
                 DescriptionEN = "My SQL"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Salesforce",
                 DescriptionEN = "Salesforce"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Photoshop",
                 DescriptionEN = "Photoshop"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Illustrator",
                 DescriptionEN = "Illustrator"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "SEO",
                 DescriptionEN = "SEO"
             },
             new Developer()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Laravel",
                 DescriptionEN = "Laravel"
@@ -382,40 +302,30 @@ namespace DemoCore.Infra.Data.Migrations
         {
             new WorkAvailability()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Manhã (de 08:00 ás 12:00)",
                 DescriptionEN = "Morning (from 08:00 to 12:00)"
             },
             new WorkAvailability()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Tarde (de 13:00 ás 18:00)",
                 DescriptionEN = "Afternoon (from 1:00 p.m. to 6:00 p.m.)"
             },
             new WorkAvailability()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Noite (de 19:00 as 22:00)",
                 DescriptionEN = "Night (7:00 p.m. to 10:00 p.m.)"
             },
             new WorkAvailability()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Madrugada (de 22:00 em diante)",
                 DescriptionEN = "Dawn (from 10 p.m. onwards)"
             },
             new WorkAvailability()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Comercial (de 08:00 as 18:00)",
                 DescriptionEN = "Business (from 08:00 a.m. to 06:00 p.m.)"
@@ -426,40 +336,30 @@ namespace DemoCore.Infra.Data.Migrations
         {
             new BestWorkTime()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Até 4 horas por dia",
                 DescriptionEN = "Up to 4 hours per day"
             },
             new BestWorkTime()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "De 4 á 6 horas por dia",
                 DescriptionEN = "4 to 6 hours per day"
             },
             new BestWorkTime()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "De 6 á 8 horas por dia",
                 DescriptionEN = "6 to 8 hours per day"
             },
             new BestWorkTime()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Acima de 8 horas por dia (tem certeza?)",
                 DescriptionEN = "Up to 8 hours a day (are you sure?)"
             },
             new BestWorkTime()
             {
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
                 DescriptionPT = "Apenas finais de semana",
                 DescriptionEN = "Only weekends"
@@ -480,9 +380,7 @@ namespace DemoCore.Infra.Data.Migrations
                 Portfolio = "",
                 City = "Test",
                 State = "Minas Gerais",
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
-                DateCreated = DateTime.Now
             }
         };
     }

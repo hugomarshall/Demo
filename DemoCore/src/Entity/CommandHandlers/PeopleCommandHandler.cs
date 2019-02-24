@@ -6,6 +6,7 @@ using DemoCore.Domain.Interfaces;
 using DemoCore.Domain.Models;
 using MediatR;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
@@ -53,10 +54,7 @@ namespace DemoCore.Domain.CommandHandlers
                 IsDeveloper = request.IsDeveloper,
                 Occupation = request.Occupation,
                 Knowledge = request.Knowledge,
-                DateCreated = DateTime.Now,
-                DateLastUpdate = null,
                 EntityState = EntityStateOptions.Active,
-                HasChanges = false,
             };
 
             if (peopleRepository.GetByEmail(people.Email) != null)
@@ -76,7 +74,40 @@ namespace DemoCore.Domain.CommandHandlers
 
         public Task<bool> Handle(UpdatePeopleCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (!request.IsValid())
+            {
+                NotifyValidationErrors(request);
+                return Task.FromResult(false);
+            }
+
+            var people = peopleRepository.Get(x => x.Email.Equals(request.Email), x=> x.Occupation, x => x.Knowledge).FirstOrDefault();
+
+            if(people == null)
+            {
+                bus.RaiseEvent(new DomainNotification(request.MessageType, "People not found."));
+                return Task.FromResult(false);
+            }
+            people.Name = request.Name;
+            people.Email = request.Email;
+            people.Skype = request.Skype;
+            people.Phone = request.Phone;
+            people.LinkedIn = request.LinkedIn;
+            people.City = request.City;
+            people.State = request.State;
+            people.Portfolio = request.Portfolio;
+            people.IsDesigner = request.IsDesigner;
+            people.IsDeveloper = request.IsDeveloper;
+            people.Occupation = request.Occupation;
+            people.Knowledge = request.Knowledge;
+            people.EntityState = request.EntityState;
+            
+            peopleRepository.Update(people);
+
+            if (Commit())
+            {
+                bus.RaiseEvent(new PeopleUpdatedEvent(people.Id, people.Name, people.Email, people.Skype, people.Phone, people.LinkedIn, people.City, people.State, people.Portfolio, people.IsDeveloper, people.IsDesigner, null, null));
+            }
+            return Task.FromResult(true);
         }
 
         public Task<bool> Handle(RemovePeopleCommand request, CancellationToken cancellationToken)

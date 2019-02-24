@@ -2,10 +2,14 @@
 {
     public class OccupationBestWorkTimeVM
     {
-        public int Id { get; private set; }
+        public OccupationBestWorkTimeVM()
+        {
+            //BestWorkTime = new BestWorkTimeVM();
+            //Occupation = new OccupationVM();
+        }
         public int BestWorkTimeId { get; set; }
-        public BestWorkTimeVM BestWorkTime { get; set; }
+        public virtual BestWorkTimeVM BestWorkTime { get; set; }
         public int OccupationId { get; set; }
-        public OccupationVM Occupation { get; set; }
+        public virtual OccupationVM Occupation { get; set; }
     }
 }

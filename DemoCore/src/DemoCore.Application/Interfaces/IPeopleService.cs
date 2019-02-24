@@ -1,6 +1,7 @@
 ﻿using DemoCore.Application.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DemoCore.Application.Interfaces
 {
@@ -11,7 +12,7 @@ namespace DemoCore.Application.Interfaces
         PeopleVM GetById(int id);
         void Update(PeopleVM peopleVM);
         void Remove(int id);
-        PeopleVM GetByEmail(string email);
+        Task<PeopleVM> GetByEmailAsync(string email);
         //IList<PeopleHistoryData> GetAllHistory(Guid id);
     }
 }

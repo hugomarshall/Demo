@@ -1,9 +1,10 @@
 ﻿using DemoCore.Domain.Models;
+using System.Threading.Tasks;
 
 namespace DemoCore.Domain.Interfaces
 {
     public interface IPeopleRepository: IRepository<People>
     {
-        People GetByEmail(string email);
+        Task<People> GetByEmail(string email);
     }
 }

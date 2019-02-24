@@ -2,23 +2,29 @@
 using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
-using System.Text;
 
 namespace DemoCore.Infra.Data.Repositories
 {
     public class PeopleRepository: Repository<People>, IPeopleRepository
     {
+        private readonly DemoCoreContext context;
+
         public PeopleRepository(DemoCoreContext context): base(context)
         {
-            
+            this.context = context;
         }
 
-        public People GetByEmail(string email)
+        public async Task<People> GetByEmail(string email)
         {
-            return DbSet.AsNoTracking().FirstOrDefault(x => x.Email == email);
+            var people = await DbSet.Include(x => x.Occupation).ThenInclude(x => x.BestWorkTimes)
+                .Include(x => x.Occupation).ThenInclude(x => x.WorkAvailabilities)
+                .Include(x => x.Knowledge).ThenInclude(x => x.KnowledgeDesigner)
+                .Include(x => x.Knowledge).ThenInclude(x => x.KnowledgeDeveloper).AsNoTracking().FirstOrDefaultAsync(x=>x.Email == email);
+
+            return people;
+            
         }
 
     }

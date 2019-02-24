@@ -23,8 +23,8 @@ namespace DemoCore.Infra.Data.EntityConfigs
             builder.Property(x => x.IsDeveloper).HasColumnName("IsDeveloper").HasColumnType("bit").IsRequired();
             builder.Property(x => x.IsDesigner).HasColumnName("IsDesigner").IsRequired();
             
-            builder.HasOne(x => x.Occupation).WithOne(x=>x.People);
-            builder.HasOne(x => x.Knowledge).WithOne(x=>x.People);
+            builder.HasOne(x => x.Occupation).WithOne(x=>x.People).HasForeignKey<Occupation>(b => b.PeopleId);
+            builder.HasOne(x => x.Knowledge).WithOne(x=>x.People).HasForeignKey<Knowledge>(b => b.PeopleId);
             base.Configure(builder);
         }
     }

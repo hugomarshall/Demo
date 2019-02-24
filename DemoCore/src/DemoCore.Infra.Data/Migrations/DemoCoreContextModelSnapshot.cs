@@ -175,42 +175,30 @@ namespace DemoCore.Infra.Data.Migrations
 
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDesigner", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("KnowledgeId");
 
                     b.Property<int>("DesignerId");
 
-                    b.Property<int>("KnowledgeId");
-
                     b.Property<int>("Value");
 
-                    b.HasKey("Id");
+                    b.HasKey("KnowledgeId", "DesignerId");
 
                     b.HasIndex("DesignerId");
-
-                    b.HasIndex("KnowledgeId");
 
                     b.ToTable("KnowledgeDesigner","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDeveloper", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("KnowledgeId");
 
                     b.Property<int>("DeveloperId");
 
-                    b.Property<int>("KnowledgeId");
-
                     b.Property<int>("Value");
 
-                    b.HasKey("Id");
+                    b.HasKey("KnowledgeId", "DeveloperId");
 
                     b.HasIndex("DeveloperId");
-
-                    b.HasIndex("KnowledgeId");
 
                     b.ToTable("KnowledgeDeveloper","DemoCoreData");
                 });
@@ -243,36 +231,24 @@ namespace DemoCore.Infra.Data.Migrations
 
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationBestWorkTime", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("OccupationId");
 
                     b.Property<int>("BestWorkTimeId");
 
-                    b.Property<int>("OccupationId");
-
-                    b.HasKey("Id");
+                    b.HasKey("OccupationId", "BestWorkTimeId");
 
                     b.HasIndex("BestWorkTimeId");
-
-                    b.HasIndex("OccupationId");
 
                     b.ToTable("OccupationBestWorkTime","DemoCoreData");
                 });
 
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationWorkAvailability", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("OccupationId");
 
                     b.Property<int>("WorkAvailabilityId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("OccupationId");
+                    b.HasKey("OccupationId", "WorkAvailabilityId");
 
                     b.HasIndex("WorkAvailabilityId");
 
@@ -407,7 +383,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDesigner", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.Designer", "Designer")
-                        .WithMany("Knowledge")
+                        .WithMany()
                         .HasForeignKey("DesignerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -420,7 +396,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.KnowledgeDeveloper", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.Developer", "Developer")
-                        .WithMany("Knowledge")
+                        .WithMany()
                         .HasForeignKey("DeveloperId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -441,7 +417,7 @@ namespace DemoCore.Infra.Data.Migrations
             modelBuilder.Entity("DemoCore.Domain.Models.OccupationBestWorkTime", b =>
                 {
                     b.HasOne("DemoCore.Domain.Models.BestWorkTime", "BestWorkTime")
-                        .WithMany("Occupation")
+                        .WithMany()
                         .HasForeignKey("BestWorkTimeId")
                         .OnDelete(DeleteBehavior.Cascade);
 

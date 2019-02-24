@@ -1,0 +1,46 @@
+﻿@using DemoCore.Application.ViewModels
+@model ICollection<SelectedItemWithValue>
+
+<table class="table table-responsive">
+    <tr>
+        @{
+        int cnt = 0;
+        foreach (var item in Model)
+        {
+            if (cnt++ % 2 == 0)
+            {
+        @:</tr><tr>
+            }
+            @:<td>
+                  <div class="input-group-lg">
+                      <label class="font-weight-bold text-center">@item.DescriptionEN</label>
+                      <div class="bg-primary container">
+                          <label class="col-form-label form-check-inline">Não conheço</label>
+                          <div class="form-check-inline">
+                              <input type="radio" class="form-check-input" aria-label="Radio button for following text input" value="1" name="@item.NameComponent">
+                              <label class="form-check-label" for="@item.NameComponent"> 1</label>
+                          </div>
+                          <div class="form-check-inline">
+                              <input type="radio" class="form-check-input" aria-label="Radio button for following text input" value="2" name="@item.NameComponent" />
+                              <label class="form-check-label" for="@item.NameComponent"> 2</label>
+                          </div>
+                          <div class="form-check-inline">
+                              <input type="radio" class="form-check-input" aria-label="Radio button for following text input" value="3" name="@item.NameComponent">
+                              <label class="form-check-label" for="@item.NameComponent"> 3</label>
+                          </div>
+                          <div class="form-check-inline">
+                              <input type="radio" class="form-check-input" aria-label="Radio button for following text input" value="4" name="@item.NameComponent">
+                              <label class="form-check-label" for="@item.NameComponent"> 4</label>
+                          </div>
+                          <div class="form-check-inline">
+                              <input type="radio" class="form-check-input" aria-label="Radio button for following text input" value="5" name="@item.NameComponent">
+                              <label class="form-check-label" for="@item.NameComponent"> 5</label>
+                          </div>
+                          <label class="form-check-inline">Sou especialista</label>
+                      </div>
+                  </div>
+@:</td>
+        }
+        @:</tr>
+        }
+    </table>

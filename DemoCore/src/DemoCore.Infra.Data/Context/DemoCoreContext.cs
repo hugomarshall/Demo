@@ -1,12 +1,15 @@
-﻿using DemoCore.Domain.Models;
+﻿using DemoCore.Domain.Core.Models;
+using DemoCore.Domain.Models;
 using DemoCore.Infra.Data.EntityConfigs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
 
 namespace DemoCore.Infra.Data.Context
 {
-    public class DemoCoreContext: DbContext
+    public class DemoCoreContext : DbContext
     {
         private readonly IHostingEnvironment env;
 
@@ -29,14 +32,20 @@ namespace DemoCore.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("DemoCoreData");
+
             modelBuilder.ApplyConfiguration(new BestWorkTimeConfiguration());
             modelBuilder.ApplyConfiguration(new DesignerConfiguration());
             modelBuilder.ApplyConfiguration(new DeveloperConfiguration());
             modelBuilder.ApplyConfiguration(new KnowledgeConfiguration());
+            modelBuilder.ApplyConfiguration(new KnowledgeDesignerConfiguration());
+            modelBuilder.ApplyConfiguration(new KnowledgeDeveloperConfiguration());
             modelBuilder.ApplyConfiguration(new OccupationConfiguration());
+            modelBuilder.ApplyConfiguration(new OccupationBestWorkTimeConfiguration());
+            modelBuilder.ApplyConfiguration(new OccupationWorkAvailabilityConfiguration());
             modelBuilder.ApplyConfiguration(new PeopleConfiguration());
             modelBuilder.ApplyConfiguration(new WorkAvailabilityConfiguration());
             
+
             base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -54,5 +63,34 @@ namespace DemoCore.Infra.Data.Context
             });
         }
 
+        public override int SaveChanges()
+        {
+
+            var selectedEntityList = ChangeTracker.Entries()
+                                .Where(x => x.Entity is Entity &&
+                                (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            //Gt user Name from  session or other authentication   
+            var userName = "Test";
+
+            foreach (var entity in selectedEntityList)
+            {
+                var entityBase = entity.Entity as Entity;
+                if (entity.State == EntityState.Added)
+                {
+                    entityBase.DateCreated = DateTime.Now;
+                }
+                else
+                {
+                    base.Entry(entityBase).Property(x => x.DateCreated).IsModified = false;
+                }
+
+                entityBase.DateLastUpdate = DateTime.Now;
+            }
+            return base.SaveChanges();
+
+        }
+
     }
 }
+

@@ -39,9 +39,7 @@ namespace DemoCore.Domain.CommandHandlers
             {
                 DescriptionEN = request.DescriptionEN,
                 DescriptionPT = request.DescriptionPT,
-                EntityState = EntityStateOptions.Active,
-                DateCreated = DateTime.UtcNow,
-                DateLastUpdate = null
+                EntityState = EntityStateOptions.Active
             };
 
             //TODO Validar se não existe!
@@ -73,8 +71,6 @@ namespace DemoCore.Domain.CommandHandlers
             model.DescriptionEN = request.DescriptionEN;
             model.DescriptionPT = request.DescriptionPT;
             model.EntityState = request.EntityState;
-            model.DateLastUpdate = DateTime.UtcNow;
-            model.HasChanges = true;
             
             bwtRepository.Update(model);
 
@@ -105,8 +101,6 @@ namespace DemoCore.Domain.CommandHandlers
                 return Task.FromResult(false);
             }
             model.EntityState = EntityStateOptions.Deleted;
-            model.DateLastUpdate = DateTime.UtcNow;
-            model.HasChanges = true;
             
             bwtRepository.Update(model);
 

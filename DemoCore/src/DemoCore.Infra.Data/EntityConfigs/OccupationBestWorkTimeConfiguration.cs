@@ -11,16 +11,15 @@ namespace DemoCore.Infra.Data.EntityConfigs
     {
         public void Configure(EntityTypeBuilder<OccupationBestWorkTime> builder)
         {
-            builder.HasKey(x => x.Id).ForSqlServerIsClustered();
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn().ValueGeneratedOnAdd();
-            builder.HasAlternateKey(x => x.BestWorkTimeId);
-            builder.HasAlternateKey(x => x.OccupationId);
+            builder.HasKey(x => new { x.OccupationId, x.BestWorkTimeId });
+            //builder.HasAlternateKey(x => x.OccupationId);
+            //builder.HasAlternateKey(x => x.BestWorkTimeId);
 
             builder.Property(x => x.BestWorkTimeId).IsRequired();
             builder.Property(x => x.OccupationId).IsRequired();
 
-            builder.HasOne(x => x.Occupation).WithMany(x => x.BestWorkTimes).HasForeignKey(x=>x.BestWorkTimeId);
-            builder.HasOne(x => x.BestWorkTime).WithMany(x=>x.Occupation).HasForeignKey(x=>x.OccupationId);
+            builder.HasOne(x => x.Occupation);
+            builder.HasOne(x => x.BestWorkTime);
             
             
         }

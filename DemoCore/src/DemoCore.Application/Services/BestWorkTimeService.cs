@@ -6,8 +6,10 @@ using DemoCore.Domain.Commands;
 using DemoCore.Domain.Core.Bus;
 using DemoCore.Domain.Interfaces;
 using DemoCore.Infra.Data.Repositories.EventSourcing;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DemoCore.Application.Services
 {
@@ -15,15 +17,18 @@ namespace DemoCore.Application.Services
     {
         private readonly IMapper mapper;
         private readonly IBestWorkTimeRepository bestWorkTimeRepository;
+        private readonly IOccupationBestWorkTimeRepository occupationBestWorkTimeRepository;
         private readonly IMediatorHandler bus;
         private readonly IEventStoreRepository eventStoreRepository;
 
-        public BestWorkTimeService(IMapper mapper, IBestWorkTimeRepository bestWorkTimeRepository, IMediatorHandler bus, IEventStoreRepository eventStoreRepository)
+        public BestWorkTimeService(IMapper mapper, IBestWorkTimeRepository bestWorkTimeRepository, IMediatorHandler bus, IEventStoreRepository eventStoreRepository,
+            IOccupationBestWorkTimeRepository occupationBestWorkTimeRepository)
         {
             this.mapper = mapper;
             this.bestWorkTimeRepository = bestWorkTimeRepository;
             this.bus = bus;
             this.eventStoreRepository = eventStoreRepository;
+            this.occupationBestWorkTimeRepository = occupationBestWorkTimeRepository;
         }
 
         public void Dispose()
@@ -57,6 +62,25 @@ namespace DemoCore.Application.Services
         {
             var updateCommand = mapper.Map<UpdateBestWorkTimeCommand>(bestWorkVM);
             bus.SendCommand(updateCommand);
+        }
+
+        public IEnumerable<SelectedItems> GetSelectedBestWorkTime()
+        {
+            var bwt = bestWorkTimeRepository.GetAll().ProjectTo<BestWorkTimeVM>(mapper.ConfigurationProvider);
+            var response = new Collection<SelectedItems>();
+            foreach(var item in bwt)
+            {
+                response.Add(
+                    new SelectedItems
+                    {
+                        Id = item.Id,
+                        DescriptionEN = item.DescriptionEN,
+                        DescriptionPT = item.DescriptionPT,
+                        Assigned = false,
+                    }
+                );
+            }
+            return response;
         }
     }
 }

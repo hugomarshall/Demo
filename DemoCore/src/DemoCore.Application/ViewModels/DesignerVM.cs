@@ -19,7 +19,6 @@ namespace DemoCore.Application.ViewModels
         public string DescriptionPT { get; set; }
         [Display(Name = "Entity State")]
         public EntityStateOptions EntityState { get; set; }
-        //public virtual ICollection<KnowledgeDesignerVM> Knowledge { get; set; }
-
+        
     }
 }

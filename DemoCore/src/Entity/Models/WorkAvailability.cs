@@ -1,4 +1,5 @@
 ﻿using DemoCore.Domain.Core.Models;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
@@ -8,11 +9,18 @@ namespace DemoCore.Domain.Models
     {
         public WorkAvailability(): this(0)
         {
-
+            IsNew = true;
+            DateCreated = DateTime.UtcNow;
         }
         public WorkAvailability(int id)
         {
             Id = id;
+            if (id != 0)
+            {
+                HasChanges = true;
+                DateLastUpdate = DateTime.UtcNow;
+                DateCreated = this.DateCreated;
+            };
         }
         public int Id { get; private set; }
         public string DescriptionEN { get; set; }

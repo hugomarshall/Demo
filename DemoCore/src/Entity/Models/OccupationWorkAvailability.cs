@@ -8,18 +8,9 @@ namespace DemoCore.Domain.Models
     [Table("OccupationWorkAvailability", Schema = "DemoCoreData")]
     public class OccupationWorkAvailability
     {
-        public OccupationWorkAvailability():this(0)
-        {
-
-        }
-        public OccupationWorkAvailability(int id)
-        {
-            Id = id;
-        }
-        public int Id { get; private set; }
         public int OccupationId { get; set; }
-        public Occupation Occupation { get; set; }
+        public virtual Occupation Occupation { get; set; }
         public int WorkAvailabilityId { get; set; }
-        public WorkAvailability WorkAvailability { get; set; }
+        public virtual WorkAvailability WorkAvailability { get; set; }
     }
 }

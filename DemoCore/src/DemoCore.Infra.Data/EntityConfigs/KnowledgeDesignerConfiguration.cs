@@ -8,18 +8,17 @@ namespace DemoCore.Infra.Data.EntityConfigs
     {
         public void Configure(EntityTypeBuilder<KnowledgeDesigner> builder)
         {
-            builder.HasKey(x => x.Id).ForSqlServerIsClustered();
-            builder.Property(x => x.Id).UseSqlServerIdentityColumn().ValueGeneratedOnAdd();
+            builder.HasKey(x => new { x.KnowledgeId, x.DesignerId });
 
-            builder.HasAlternateKey(x => x.DesignerId);
-            builder.HasAlternateKey(x => x.KnowledgeId);
-
+            //builder.HasAlternateKey(x => x.KnowledgeId);
+            //builder.HasAlternateKey(x => x.DesignerId);
             builder.Property(x => x.DesignerId).IsRequired();
             builder.Property(x => x.KnowledgeId).IsRequired();
-            builder.Property(x => x.Value).HasColumnName("Value").HasColumnType("int").IsRequired();
+            builder.Property(x => x.Value).IsRequired();
 
-            builder.HasOne(x => x.Designer).WithMany(x => x.Knowledge).HasForeignKey(x => x.DesignerId);
-            builder.HasOne(x => x.Knowledge).WithMany(x => x.KnowledgeDesigner).HasForeignKey(x => x.KnowledgeId);
+            builder.HasOne(x => x.Knowledge);
+            builder.HasOne(x => x.Designer);
         }
     }
 }
+

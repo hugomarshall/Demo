@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using static DemoCore.Domain.Core.Enums.EntityStateEnum;
 
 namespace DemoCore.Application.ViewModels
 {
+    [BindProperties]
     public class KnowledgeVM
     {
+        public KnowledgeVM()
+        {
+            //People = new PeopleVM();
+            //KnowledgeDesigner = new List<KnowledgeDesignerVM>();
+            //KnowledgeDeveloper = new List<KnowledgeDeveloperVM>();
+        }
         public int Id { get; set; }
         public int PeopleId { get; set; }
         public PeopleVM People { get; set; }

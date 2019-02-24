@@ -1,5 +1,4 @@
-﻿using DemoCore.Infra.CrossCutting.Identity.Authorization;
-using DemoCore.Infra.CrossCutting.Identity.Data;
+﻿using DemoCore.Infra.CrossCutting.Identity.Data;
 using DemoCore.Infra.CrossCutting.Identity.Extensions;
 using DemoCore.Infra.CrossCutting.Identity.Migrations;
 using DemoCore.Infra.CrossCutting.Identity.Models;
@@ -17,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace DemoCore.WebUI
 {
@@ -51,7 +51,8 @@ namespace DemoCore.WebUI
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => {
+                .AddCookie(o =>
+                {
                     o.LoginPath = new PathString("/login");
                     o.AccessDeniedPath = new PathString("/home/access-denied");
                 })
@@ -74,10 +75,15 @@ namespace DemoCore.WebUI
             });
 
             services.AddAutoMapperSetup();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvc().AddJsonOptions(opts =>
+            {
+                opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+                opts.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddPoliciesSetup();
-
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 

@@ -10,12 +10,13 @@ namespace DemoCore.Infra.Data.EntityConfigs
         {
             builder.HasKey(x => x.Id).ForSqlServerIsClustered();
             builder.Property(x => x.Id).UseSqlServerIdentityColumn().ValueGeneratedOnAdd();
+            builder.Ignore(x => x.People);
 
             builder.HasAlternateKey(x => x.PeopleId);
 
             builder.Property(x => x.Other).HasColumnName("Other").HasColumnType("nvarchar(500)").HasMaxLength(500);
             
-            builder.HasOne(x => x.People).WithOne(x=>x.Knowledge);
+            
             
             base.Configure(builder);
         }

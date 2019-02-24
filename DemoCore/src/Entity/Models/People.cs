@@ -1,4 +1,5 @@
 ﻿using DemoCore.Domain.Core.Models;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoCore.Domain.Models
@@ -9,9 +10,16 @@ namespace DemoCore.Domain.Models
         public People(int id)
         {
             Id = id;
+            if (id != 0)
+            {
+                HasChanges = true;
+                DateLastUpdate = DateTime.UtcNow;
+                DateCreated = this.DateCreated;
+            };
         }
         public People(): this(0)
         {
+            DateCreated = DateTime.UtcNow;
             IsNew = true;
         }
 
@@ -26,8 +34,8 @@ namespace DemoCore.Domain.Models
         public string Portfolio { get; set; }
         public bool IsDeveloper { get; set; }
         public bool IsDesigner { get; set; }
-        public Occupation Occupation { get; set; }
-        public Knowledge Knowledge { get; set; }
+        public virtual Occupation Occupation { get; set; }
+        public virtual Knowledge Knowledge { get; set; }
         public override bool Validate()
         {
             //TODO Implement specifc entity Validate
